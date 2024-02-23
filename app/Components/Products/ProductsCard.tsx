@@ -23,7 +23,7 @@ import { AddProduct } from "@/app/utils/AddToCart";
 
 type productsCardProps = {
     product: productsProps, 
-    wishListProductsIds: Array<number>
+    wishListProductsIds: Array<number> | undefined
 }
 
 const ProductsCard = ({

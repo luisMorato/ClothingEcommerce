@@ -41,8 +41,8 @@ export const FetchCartProducts = async (currentUserId: string) => {
     }
 }
 
-export const FetchWishList = async () => {
-    const wishListUrl = `${domain}/api/FetchWishListData`;
+export const FetchWishList = async (userId: string): Promise<Array<number> | undefined> => {
+    const wishListUrl = `${domain}/api/FetchWishListData?id=${userId}`;
 
     try {
         const response = await fetch(wishListUrl, 

@@ -1,4 +1,5 @@
 'use client';
+import Link from "next/link";
 import { 
     Suspense,
     useEffect,
@@ -11,36 +12,36 @@ import { productsProps } from "@/app/Types/route";
 
 import WishListCard from "@/app/Components/(protected)/WishList/WishListCard";
 import Loading from "@/app/loading";
-import Link from "next/link";
 import Button from "@/app/Components/Layout/Button";
+import { useSearchParams } from "next/navigation";
 
 const WishList = () => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
-
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
-    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | []>([]);
+    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
+
+    const searchParams = useSearchParams();
+    const userId = searchParams.get('id');
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const [productsResponse, WishListResponse] = await Promise.all([
                     FetchProducts(),
-                    FetchWishList()
+                    FetchWishList(userId as string)
                 ]);
 
                 setProducts(productsResponse);
-                
                 setWishListProcutsIds(WishListResponse);
-
+                // window.alert(JSON.stringify(WishListResponse));
             } catch (error) {
                 console.log('error: ', error);
             }
         }
 
         fetchData();
-    }, [domain, wishListProductsIds]);
+    }, [wishListProductsIds]);
 
-    const wishListProducts: productsProps[] = wishListProductsIds && products?.filter((product) => wishListProductsIds.some((id) => product!.id === id)) || [];
+    const wishListProducts: productsProps[] | undefined = wishListProductsIds && products && products.filter((product) => wishListProductsIds.some((id) => product!.id === id));
    
     return wishListProducts && (
         <div className="flex flex-col items-center py-12">

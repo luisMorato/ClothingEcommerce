@@ -17,7 +17,7 @@ export const getUserById = async (userId: string) => {
         where: { 
             id: userId
         }
-    })
+    });
 
     if(existingUser) return existingUser;
     
@@ -27,7 +27,7 @@ export const getUserById = async (userId: string) => {
 export const getCurrentUser = async () => {
     const session = await auth();
     if(session && session.user){
-        const user = getUserById(session.user.id as string);
+        const user = await getUserById(session.user.id as string);
 
         if(user) return user;
     }

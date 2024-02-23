@@ -46,7 +46,9 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
         md:right-0
         `}>
             <h1 className="text-2xl font-semibold my-2">Cart</h1>
-            <Suspense fallback={ <Loading /> }>
+            <Suspense 
+                fallback={<Loading />}
+            >
                 { filteredData?.length !== 0 ?
                     filteredData &&
                     <div className="bg-white px-2 py-3 mb-2 rounded-lg shadow-sm">

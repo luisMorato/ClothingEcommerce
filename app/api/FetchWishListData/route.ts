@@ -1,17 +1,14 @@
+'use server';
 import { NextResponse } from "next/server";
 
 import { getWishListData } from "@/app/Actions/WishList";
-import { getCurrentUser } from "@/app/utils/GetUser";
 
 export const GET = async (req: Request) => {
-    const currentUser = await getCurrentUser();
-
-    if(!currentUser){
-        return NextResponse.json({message: 'No Users Logged!'}, {status: 422});
-    }
+    const queryParams = new URLSearchParams(req.url.split('?')[1]);
+    const userId = queryParams.get("id") as string;
 
     try {
-        const data = await getWishListData(currentUser.id as string);
+        const data = await getWishListData(userId);
 
         if(data.success){
             return NextResponse.json({wishListData: data.wishListData, message: data.success, ok: data.ok}, {status: data.status});

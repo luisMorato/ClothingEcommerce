@@ -60,7 +60,7 @@ const UserButtons = ({ currentUser }: {currentUser: User | null}) => {
                         {openUserMenu &&
                             <div className="absolute top-full right-0 mt-2 bg-white text-sm font-semibold rounded-md border">
                                 <ul>
-                                    <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href='/WishList'>My Favorites</Link></li>
+                                    <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href={`/WishList?id=${currentUser.id as string}`}>My Favorites</Link></li>
                                     <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href='/Profile'>Account</Link></li>
                                 </ul>
                                 <hr />

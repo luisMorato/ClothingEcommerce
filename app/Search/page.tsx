@@ -7,21 +7,22 @@ import { productsProps } from "@/app/Types/route";
 
 import ProductsCard from "@/app/Components/Products/ProductsCard";
 import Loading from "@/app/loading";
+import { getCurrentUser } from "../utils/GetUser";
 
 const Search = () => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
-
     const { search } = useContext(SearchContext);
 
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
-    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | []>([]);
+    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
     
     useEffect(() => {
         const fetchData = async () => {
+            const currentUser = await getCurrentUser();
+            
             try {
                 const [productsResponse, WishListResponse] = await Promise.all([
                     FetchProducts(),
-                    FetchWishList()
+                    FetchWishList(currentUser?.id as string)
                 ]);
 
                 setProducts(productsResponse);
@@ -33,7 +34,7 @@ const Search = () => {
         }
 
         fetchData();
-    }, [domain]);
+    }, []);
 
     return search ? (
         <div className="bg-grayVariant flex flex-col items-center justify-center gap-4 h-1/2 w-full pt-8">
@@ -44,7 +45,7 @@ const Search = () => {
                         <Loading />
                     }
                 >
-                    {products && 
+                    {products && wishListProductsIds &&
                         products.filter((product) => product && product.title.toLowerCase().includes(search.toLowerCase())).length !== 0 
                         ?
                         products

@@ -15,12 +15,13 @@ import OrderBySelectInput from '@/app/Components/Products/OrderBySelectInput';
 import ProductsCard from '@/app/Components/Products/ProductsCard';
 import PaginationControl from '@/app/Components/Products/PaginationControl';
 import SkeletonLoading from '@/app/Products/SkelentonLoading';
+import { getCurrentUser } from '../utils/GetUser';
 
 const Products = () => {
     const { search } = useContext(SearchContext);
     const [isLoading, setIsLoading] = useState(true);
     
-    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | []>([]);
+    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
 
     const [orderBy, setOrderBy] = useState('');
 
@@ -40,10 +41,12 @@ const Products = () => {
     //Fetching
     useEffect(() => {
         const fetchData = async () => {
+            const currentUser = await getCurrentUser();
+
             try {
                 const [productsResponse, WishListResponse] = await Promise.all([
                     FetchProducts(),
-                    FetchWishList()
+                    FetchWishList(currentUser?.id as string)
                 ]);
 
                 setProducts(productsResponse);

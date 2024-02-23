@@ -33,7 +33,7 @@ const Navbar = ({ currentUser }: {currentUser: User | null}) => {
     }
 
     return (
-        <div className="w-[88%] flex justify-between items-center">
+        <div className="w-[84%] flex justify-between items-center">
             <Logo />
             <div 
                 className="hidden 

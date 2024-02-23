@@ -11,8 +11,6 @@ const NewProdcuts = () => {
 
     const [newProducts, setNewProducts] = useState<Array<productsProps>>([]);
 
-    const filteredProducts = newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
-
     useEffect(() => {
         const getProducts = async () => {
             const productsResponse = await FetchProducts();
@@ -20,6 +18,8 @@ const NewProdcuts = () => {
         } 
         getProducts();
     }, [domain]);
+
+    const filteredProducts = newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
 
     return filteredProducts && (
         <div id='newProducts'>

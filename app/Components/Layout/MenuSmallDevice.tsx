@@ -18,8 +18,7 @@ const MenuSmallDevice = () => {
                 <FaBars className="text-2xl text-neutral-400"/>
             </button>
             {isOpen &&
-                <div
-                className="absolute top-full right-0 w-fit px-4  mt-2 bg-white text-sm font-semibold rounded-md border">
+                <div className="absolute top-full right-0 w-[160px] px-4  mt-2 bg-white text-sm font-semibold rounded-md border">
                     <ul>
                         <li
                             className="py-2 text-nowrap hover:bg-neutral-200"

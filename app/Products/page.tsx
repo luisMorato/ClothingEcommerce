@@ -54,12 +54,14 @@ const Products = () => {
                     if (urlCategory) {
                         filtered = filtered.filter(product => product!.category.toString().toLowerCase().replace(/ /g, '').includes(urlCategory.toLowerCase().replace(/ /g, '')));
                         setFilteredProducts(filtered);
+                        setIsLoading(false);
                         return;
                     }
             
                     if(urlGender){
                         filtered = filtered.filter(product => product!.gender === urlGender);
                         setFilteredProducts(filtered);
+                        setIsLoading(false);
                         return;
                     }
                 }

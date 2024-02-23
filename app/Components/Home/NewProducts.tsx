@@ -7,7 +7,7 @@ import { productsProps } from '@/app/Types/route';
 import NewProductsCard from '@/app/Components/Home/NewProductCards';
 
 const NewProdcuts = () => {
-    const [newProducts, setNewProducts] = useState<Array<productsProps>>([]);
+    const [newProducts, setNewProducts] = useState<Array<productsProps> | undefined>([]);
 
     useEffect(() => {
         const getProducts = async () => {

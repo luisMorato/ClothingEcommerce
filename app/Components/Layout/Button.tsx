@@ -26,7 +26,7 @@ const Button = ({
                 type={type}
                 className="w-full disabled:cursor-wait"
             >
-                { children }
+                <span className="text-nowrap">{ children }</span>
             </button>
         </div>
     )

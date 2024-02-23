@@ -88,7 +88,7 @@ const UserButtons = ({ currentUser }: {currentUser: User | null}) => {
                                 id="CreateAccountBtn"
                                 onClick={registerModal.onOpen}
                             >
-                                Create an Account
+                                <p className="text-nowrap">Create an Account</p>
                             </Button>
                         </div>
                         <MenuSmallDevice />

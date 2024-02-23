@@ -53,13 +53,13 @@ const Slider = () => {
                         md:gap-14">
                             <button
                                 onClick={() => router.push(slide.btn1Link as string)}
-                                className={slide.btn1Text ? "border border-x-white rounded-[44px] text-black py-2 px-6 text-nowrap hover:bg-black hover:text-white hover:border-black md:px-12" : "hidden"}
+                                className={slide.btn1Text ? "border border-x-white rounded-[44px] text-black py-2 px-5 text-nowrap hover:bg-black hover:text-white hover:border-black md:px-12" : "hidden"}
                             >
                                 {slide.btn1Text}
                             </button>
                             <button 
                                 onClick={() => router.push(slide.btn2Link as string)}
-                                className={slide.btn2Text ? "border border-x-white rounded-[44px] text-black py-2 px-6 text-nowrap hover:bg-black hover:text-white hover:border-black md:px-12" : "hidden"}
+                                className={slide.btn2Text ? "border border-x-white rounded-[44px] text-black py-2 px-5 text-nowrap hover:bg-black hover:text-white hover:border-black md:px-12" : "hidden"}
                             >
                                 {slide.btn2Text}
                             </button>

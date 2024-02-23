@@ -23,7 +23,7 @@ const UserButtons = ({ currentUser }: {currentUser: User | null}) => {
     const [openCart, setOpenCart] = useState<boolean>(false);
 
     return (
-        <div className="flex gap-3 relative">
+        <div className="relative flex gap-3">
             {
                 currentUser ?
                     <>

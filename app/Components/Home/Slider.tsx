@@ -49,7 +49,7 @@ const Slider = () => {
                         </section>
                         <Image className="hidden lg:block" src={slide.imgSrc[0]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="full" priority />
                         <Image className="lg:hidden" src={slide.imgSrc[1]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="full" priority />
-                        <div className="flex absolute left-1/2 -translate-x-1/2 bottom-10 gap-4 z-10
+                        <div className="flex justify-center absolute bottom-10 gap-4 z-10 w-full
                         md:gap-14">
                             <button
                                 onClick={() => router.push(slide.btn1Link as string)}

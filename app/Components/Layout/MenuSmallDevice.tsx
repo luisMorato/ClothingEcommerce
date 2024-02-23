@@ -19,16 +19,16 @@ const MenuSmallDevice = () => {
             </button>
             {isOpen &&
                 <div
-                className="absolute top-full right-0 mt-2 bg-white text-sm font-semibold rounded-md border">
+                className="absolute top-full right-0 w-fit px-4  mt-2 bg-white text-sm font-semibold rounded-md border">
                     <ul>
                         <li
-                            className="py-2 px-4 text-nowrap hover:bg-neutral-200"
+                            className="py-2 text-nowrap hover:bg-neutral-200"
                             onClick={loginModal.onOpen}
                         >
                             Log In
                         </li>
                         <li
-                            className="py-2 px-4 text-nowrap hover:bg-neutral-200"
+                            className="py-2 text-nowrap hover:bg-neutral-200"
                             onClick={registerModal.onOpen}
                         >
                             Create an Account

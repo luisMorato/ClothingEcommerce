@@ -41,7 +41,7 @@ export const FetchCartProducts = async (currentUserId: string) => {
     }
 }
 
-export const FetchWishList = async() => {
+export const FetchWishList = async () => {
     const wishListUrl = `${domain}/api/FetchWishListData`;
 
     try {

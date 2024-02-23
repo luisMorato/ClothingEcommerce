@@ -125,10 +125,12 @@ const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: side
         <aside
             className={`flex flex-col h-screen px-4 z-20 fixed left-0 bg-white w-[300px] translate duration-200
             ${isOpen ? "translate-x-0" : "-translate-x-[95%]"}
+            md:w-[320px]
             lg:h-full
             lg:translate-x-0
             lg:z-0
-            lg:relative`}
+            lg:relative
+            2xl:w-[350px]`}
         >
                 <button
                     onClick={() => {setIsOpen((prevValue) => !prevValue)}}
@@ -142,11 +144,12 @@ const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: side
                     }
                 </button>
                 <h2 className='text-2xl my-3'>Filters</h2>
-                <div className='overflow-y-scroll h-[90%] pb-8
-                lg:pb-0
-                lg:overflow-y-auto
-                lg:h-full
-                '>
+                <div 
+                    className='overflow-y-scroll h-[90%] pb-8
+                    lg:pb-0
+                    lg:overflow-y-auto
+                    lg:h-full'
+                >
                     <div className='border-b-[1px] border-neutral-400 pb-5 mb-4'>
                         <div className="flex items-center justify-between gap-6 border border-neutral-400 rounded-[56px] px-4 py-1">
                             <div className='flex items-center gap-2'>

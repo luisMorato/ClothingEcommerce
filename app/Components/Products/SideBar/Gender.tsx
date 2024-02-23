@@ -30,7 +30,7 @@ const Gender = ({ setGender, gender }: genderProps) => {
                         />
                         <FaCheck className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] pointer-events-none hidden peer-checked:block' />
                     </div>
-                    <label className="text-xs font-medium" htmlFor="male">Male</label>
+                    <label className="text-xs font-medium md:text-sm" htmlFor="male">Male</label>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className='relative'>
@@ -51,7 +51,7 @@ const Gender = ({ setGender, gender }: genderProps) => {
                         />
                         <FaCheck className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] pointer-events-none hidden peer-checked:block' />
                     </div>
-                    <label className="text-xs font-medium" htmlFor="female">Female</label>
+                    <label className="text-xs font-medium md:text-sm" htmlFor="female">Female</label>
                 </div>
                 <div className="flex items-center gap-2">
                     <div className='relative'>
@@ -71,7 +71,7 @@ const Gender = ({ setGender, gender }: genderProps) => {
                         />
                         <FaCheck className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px] pointer-events-none hidden peer-checked:block' />
                     </div>
-                    <label className="text-xs font-medium" htmlFor="unissex">Unissex</label>
+                    <label className="text-xs font-medium md:text-sm" htmlFor="unissex">Unissex</label>
                 </div>
             </div>
         </div>

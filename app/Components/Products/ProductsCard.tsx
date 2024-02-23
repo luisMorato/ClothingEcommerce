@@ -106,7 +106,7 @@ const ProductsCard = ({
                 />
                 <div className="relative flex flex-col items-center justify-between h-full group">
                     <Link href={`/Products/${product.id}`}>
-                        <div className="relative w-[276px] h-[300px] hover:scale-105 duration-200">
+                        <div className="relative w-[290px] h-[300px] hover:scale-105 duration-200">
                             <Image src={product.image[imageIndex] as string} alt={`Product-${product.title}`} fill sizes="276px" quality={100} priority/>
                         </div>
                     </Link>

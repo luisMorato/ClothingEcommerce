@@ -9,7 +9,7 @@ const Sizing = ({ selectedSizes, sizes }: sizingProps) => {
     return(
         <div className="mb-6">
             <h2 className='text-2xl mb-3'>Sizing</h2>
-            <div className="flex gap-6 px-3">
+            <div className="flex gap-6 px-3 md:gap-7">
                 <div>
                     <div className="flex items-center gap-2 mb-2">
                         <div className='relative'>
@@ -29,7 +29,7 @@ const Sizing = ({ selectedSizes, sizes }: sizingProps) => {
                             />
                             <FaCheck className='absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-[10px]  pointer-events-none hidden peer-checked:block' />
                         </div>
-                        <label className="text-xs font-medium" htmlFor="XXS">XXS</label>
+                        <label className="text-xs font-medium md:text-sm" htmlFor="XXS">XXS</label>
                     </div>
                     <div className="flex items-center gap-2 mb-2">
                         <div className='relative'>

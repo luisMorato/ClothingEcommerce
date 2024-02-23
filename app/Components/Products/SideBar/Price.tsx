@@ -9,7 +9,7 @@ type priceProps = {
 }
 
 const Price = ({ clearFilters, priceInterval, setPriceInterval }: priceProps) => {
-    return(
+    return (
         <div className="mb-8">
             <div className="flex justify-between items-center mb-3">
                 <h2 className='text-2xl'>Price</h2>
@@ -34,7 +34,7 @@ const Price = ({ clearFilters, priceInterval, setPriceInterval }: priceProps) =>
                         value={priceInterval.toFixed(2)}
                         onChange={(e) => {setPriceInterval(parseInt(e.target.value))}}
                     />
-                    <div className='flex justify-between text-xs mt-2'>
+                    <div className='flex justify-between text-xs mt-2 md:text-sm'>
                         <p>$10,00</p>
                         <p>${priceInterval.toFixed(2)}</p>
                     </div>

@@ -27,7 +27,9 @@ const NewProductsCard = ({ id, imgSrc, title, size }: NewProductsCardProps) => {
     return(
         <div className="relative w-[300px] h-[400px] border border-neutral-300">
             <Link href={`/Products/${id}`}>
-                <Image src={imgSrc} alt={title} fill quality={100} sizes="300px"/>
+                <div className="relative w-full h-full">
+                    <Image src={imgSrc} alt={title} fill quality={100} sizes="300px"/>
+                </div>
             </Link>
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 brightness-75 hover:brightness-100 hover:cursor-pointer">
                 <Button

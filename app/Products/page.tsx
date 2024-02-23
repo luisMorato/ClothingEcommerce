@@ -152,6 +152,8 @@ const Products = () => {
                                 md:grid
                                 md:grid-cols-2
                                 xl:grid-cols-3
+                                xl:gap-x-6
+                                2xl:gap-x-0
                                 2xl:grid-cols-4'
                             >
                                 {productsSliced

@@ -63,7 +63,7 @@ const Category = ({ selectedCategory, products }: categoryProps) => {
                             name='categoryInput'
                             onChange={(e) => selectedCategory(e.target.id)}
                         />
-                        <label className="text-xs font-medium" htmlFor={category}>{Capitalize(category)}</label>
+                        <label className="text-xs font-medium md:text-sm" htmlFor={category}>{Capitalize(category)}</label>
                     </div>
                 ))}
             </div>

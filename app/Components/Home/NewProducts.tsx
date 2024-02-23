@@ -7,8 +7,6 @@ import { productsProps } from '@/app/Types/route';
 import NewProductsCard from '@/app/Components/Home/NewProductCards';
 
 const NewProdcuts = () => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
-
     const [newProducts, setNewProducts] = useState<Array<productsProps>>([]);
 
     useEffect(() => {
@@ -17,9 +15,9 @@ const NewProdcuts = () => {
             setNewProducts(productsResponse);
         } 
         getProducts();
-    }, [domain]);
+    }, []);
 
-    const filteredProducts = newProducts.length !== 0 && newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
+    const filteredProducts = newProducts && newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
 
     return filteredProducts && (
         <div id='newProducts'>

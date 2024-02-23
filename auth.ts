@@ -4,6 +4,7 @@ import authConfig from "./auth.config";
 import { db } from "@/app/lib/db";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { getUserById } from "./app/utils/GetUser";
+import {JWT } from "next-auth/jwt";
 
 export const {
   handlers: { GET, POST },
@@ -15,12 +16,12 @@ export const {
       signIn: '/',
     },
     callbacks: {
-      async session({ session, token }){
-        if(token.sub && session.user){
+      async session({ session, token }: {session: any, token?: JWT}){
+        if(token && token.sub && session.user){
           session.user.id = token.sub;
         }
 
-        if(token.provider && session.user){
+        if(token && token.provider && session.user){
           session.user.provider = token.provider;
         }
 

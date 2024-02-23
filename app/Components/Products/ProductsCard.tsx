@@ -26,10 +26,9 @@ type productsCardProps = {
     wishListProductsIds: Array<number>
 }
 
-const ProductsCard = (
-    { 
-        product, 
-        wishListProductsIds 
+const ProductsCard = ({
+        product,
+        wishListProductsIds
     }: productsCardProps
 ) => {
     const domain = process.env.NEXT_PUBLIC_APP_URL;

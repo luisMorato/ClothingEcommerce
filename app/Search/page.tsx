@@ -2,6 +2,7 @@
 import { Suspense, useContext, useEffect, useState } from "react";
 import { SearchContext } from "@/app/Context/ContextSearch";
 
+import { FetchProducts, FetchWishList } from "@/app/utils/FetchingFunctions";
 import { productsProps } from "@/app/Types/route";
 
 import ProductsCard from "@/app/Components/Products/ProductsCard";
@@ -13,27 +14,25 @@ const Search = () => {
     const { search } = useContext(SearchContext);
 
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
+    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | []>([]);
     
     useEffect(() => {
-        const fetchProductsData = async () => {
-            const url = `${domain}/api/FetchProducts`;
+        const fetchData = async () => {
             try {
-                const response = await fetch(url,
-                    {
-                        method: 'GET',
-                        headers: {
-                            "content-type": "application/json",
-                        }
-                    }
-                )
-                const resJson = await response.json();
-                setProducts(resJson.data);
+                const [productsResponse, WishListResponse] = await Promise.all([
+                    FetchProducts(),
+                    FetchWishList()
+                ]);
+
+                setProducts(productsResponse);
+
+                setWishListProcutsIds(WishListResponse);
             } catch (error) {
                 console.log('error: ', error);
             }
         }
 
-        fetchProductsData();
+        fetchData();
     }, [domain]);
 
     return search ? (
@@ -55,6 +54,7 @@ const Search = () => {
                             <ProductsCard
                                 key={product.id}
                                 product={product}
+                                wishListProductsIds={wishListProductsIds}
                             />
                         )) 
                         : 

@@ -1,0 +1,457 @@
+{
+    "Slides": [
+        {
+            "id": 1,
+            "imgSrc": ["/Images/SliderImg-1.png", "/Images/Slider-small-screens-1.jpg"],
+            "slideTitle": "Summer News",
+            "slideText": "The Best T-shirts, Dresses and Linen Pieces Selection for These Sunny Days",
+            "btn1Text": "See Feminine",
+            "btn1Link": "/Products?gender=female",
+            "btn2Text": "See Masculine",
+            "btn2Link": "/Products?gender=male"
+        },
+        {
+            "id": 2,
+            "imgSrc": ["/Images/SliderImg-2.jpg", "/Images/Slider-small-screens-2.jpg"],
+            "slideTitle": "All New Products For $59,90",
+            "slideText": "Discounts Valid for Limited Time And only on Selected Products",
+            "btn1Text": "Buy Now",
+            "btn1Link": "/Products"
+        },
+        {
+            "id": 3,
+            "imgSrc": ["/Images/SliderImg-3.jpg", "/Images/Slider-small-screens-3.jpg"],
+            "slideTitle": "Up to 60% OFF",
+            "slideText": "Discounts Valid for Limited Time And only on Selected Products",
+            "btn1Text": "Buy Now",
+            "btn1Link": "/Products"
+        }
+    ],
+
+    "products": [
+        {
+            "id": 1,
+            "title": "Black Unissex Long Sleeves T-shirt",
+            "price": 89.90,
+            "description": "long-sleeved black T-shirt, part of our T-shirts collection. Your perfect choice for everyday wear, providing warmth with its long sleeves. Crafted from comfortable fabric, this unisex T-shirt is available in sizes M, L, XL, and XXL, ensuring a versatile fit. The classic black color adds a timeless touch to your wardrobe.",
+            "PieceDetails" : ["Black color", "Long sleeves", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["M", "L", "XL", "XXL"],
+            "color": ["black"],
+            "gender": "unissex",
+            "freeShipping": true,
+            "hot": true,
+            "image": ["/Images/Products/man-black-sweater-long-sleeve-shirt.jpg", "/Images/Products/man-black-sweater-long-sleeve-shirt-2.jpg", "/Images/Products/man-black-sweater-long-sleeve-shirt-3.jpg", "/Images/Products/man-black-sweater-long-sleeve-shirt-4.jpg"],
+            "rating": {
+                "rate": 4.9,
+                "count": 120
+            }
+        },
+        {
+            "id": 2,
+            "title": "Beige Female SweatShirt",
+            "price": 119.90,
+            "description": "Women's beige sweatshirt, an elegant addition to our Sweater And Jackets collection. Perfect for cooler days, this versatile piece provides both comfort and style. With a loose silhouette, it's an ideal choice for casual moments or creating relaxed looks. Available in sizes XS, S, M, and L, this beige sweatshirt complements various outfits.",
+            "priceDetais" : ["Brown color", "Long sleeves", "Loose Fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer":"Own manufacturing",
+            "category": ["Sweater And Jackets"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["brown"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": true,
+            "image": ["/Images/Products/Beige-Female-sweatshirt.jpg", "/Images/Products/Beige-Female-sweatshirt-2.jpg", "/Images/Products/Beige-Female-sweatshirt-3.jpg", "/Images/Products/Beige-Female-sweatshirt-4.jpg"],
+            "rating": {
+                "rate": 4.7,
+                "count": 90
+            }
+        },
+        {
+            "id": 3,
+            "title": "Kit Male Jeans Jacket And Brown Pants",
+            "price": 229.90,
+            "description": "Men's set featuring a modern denim jacket and brown pants, perfect for a casual and laid-back style from our Sweater And Jackets and Pants collections. The denim jacket adds a touch of relaxation, while the brown pants guarantee an elegant and modern look. Available in sizes XS, S, M, and L, this set is a versatile choice for your wardrobe.",
+            "PieceDetails": ["Brown color", "Denim jacket", "Modern style", "Various pieces in the set"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets", "Pants"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["brown"],
+            "gender": "male",
+            "freeShipping": false,
+            "hot": true,
+            "image": ["/Images/Products/jeans-jacket-and-brown-pants.jpg", "/Images/Products/jeans-jacket-and-brown-pants-2.jpg", "/Images/Products/jeans-jacket-and-brown-pants-3.jpg", "/Images/Products/jeans-jacket-and-brown-pants-4.jpg"],
+            "rating": {
+                "rate": 4.7,
+                "count": 240
+            }
+        },
+        {
+            "id": 4,
+            "title": "Kit Gray Female social Jacket And White Pants",
+            "price": 259.90,
+            "description": "A Women's set featuring an elegant gray blazer and white pants, perfect for more formal and professional occasions. The gray blazer offers sophistication, while the white pants bring a touch of freshness to the look. Available in sizes XS, S, and M, this social set is a must-have for your wardrobe.",
+            "PieceDetails": ["Gray color", "Social style", "Elegant blazer", "White Pants"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Social", "Sweater And Jackets", "Pants"],
+            "sizes": ["XS", "S", "M"],
+            "color": ["gray"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": true,
+            "image": ["/Images/Products/gray-jacket-and-white-pants.jpg", "/Images/Products/gray-jacket-and-white-pants-2.jpg", "/Images/Products/gray-jacket-and-white-pants-3.jpg", "/Images/Products/gray-jacket-and-white-pants-4.jpg"],
+            "rating": {
+                "rate": 4.7,
+                "count": 100
+            }
+        },
+        {
+            "id": 5,
+            "title": "Light Brown Female sweatshirt",
+            "price": 150.00,
+            "description": "Women's light brown sweatshirt, a cozy addition to our Sweater And Jackets collection. Crafted for comfort, this sweatshirt is perfect for chilly days. Available in sizes XXS, XS, S, and M, it's a versatile and stylish choice for your wardrobe.",
+            "PieceDetails": ["Brown color", "Long sleeves", "Comfortable fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets"],
+            "sizes": ["XXS", "XS", "S", "M"],
+            "color": ["brown"],
+            "gender": "female",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/light-brown-female-jacket.jpg", "/Images/Products/light-brown-female-jacket-2.jpg", "/Images/Products/light-brown-female-jacket-3.jpg", "/Images/Products/light-brown-female-jacket-4.jpg"],
+            "rating": {
+                "rate": 5.0,
+                "count": 100
+            }
+        },
+        {
+            "id": 6,
+            "title": "Ice White Female Blouse",
+            "price": 99.90,
+            "description": "Women's ice white blouse, part of our Sport Clothes collection. Designed for comfort and style, this blouse is a versatile addition to your wardrobe. Available in sizes XXS, XS, S, and M, the white color adds a fresh and sporty touch to your look.",
+            "PieceDetails": ["White color", "Sporty style", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets", "Sport Clothes"],
+            "sizes": ["XXS", "XS", "S", "M"],
+            "color": ["white"],
+            "gender": "female",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/Ice-white-female-jacket.jpg", "/Images/Products/Ice-white-female-jacket-2.jpg", "/Images/Products/Ice-white-female-jacket-3.jpg", "/Images/Products/Ice-white-female-jacket-4.jpg"],
+            "rating": {
+                "rate": 4.5,
+                "count": 87
+            }
+        },
+        {
+            "id": 7,
+            "title": "Brown Female Jacket",
+            "price": 200.00,
+            "description": "Women's brown jacket, a chic addition to our Sweater And Jackets collection. Crafted for both style and comfort, this jacket is available in sizes XS, S, M, and L. The brown color adds warmth and sophistication to your outfit.",
+            "PieceDetails": ["Brown color", "Long sleeves", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["brown"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Brown-female-jacket.jpg", "/Images/Products/Brown-female-jacket-2.jpg", "/Images/Products/Brown-female-jacket-3.jpg", "/Images/Products/Brown-female-jacket-4.jpg"],
+            "rating": {
+                "rate": 4.2,
+                "count": 53
+            }
+        },
+        {
+            "id": 8,
+            "title": "Blue and White College Jacket",
+            "price": 119.90,
+            "description": "Unisex blue and white college jacket, part of our Sweater And Jackets collection. Crafted for style and comfort, this jacket is available in sizes S, M, L, and XL. The classic blue and white combination adds a timeless and sporty touch to your wardrobe.",
+            "PieceDetails": ["Blue and white colors", "Sporty style", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets"],
+            "sizes": ["S", "M", "L", "XL"],
+            "color": ["white", "blue"],
+            "gender": "unissex",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/blue-and-white-college-jacket.jpg", "/Images/Products/blue-and-white-college-jacket-2.jpg", "/Images/Products/blue-and-white-college-jacket-3.jpg", "/Images/Products/blue-and-white-college-jacket-4.jpg"],
+            "rating": {
+                "rate": 4.8,
+                "count": 204
+            }
+        },
+        {
+            "id": 9,
+            "title": "All Black Female T-shirt",
+            "price": 69.99,
+            "description": "Women's all-black T-shirt, part of our T-shirts collection. Crafted for comfort, this T-shirt is a versatile piece for everyday wear. Available in sizes XXS, XS, S, and M, the classic black color adds a touch of elegance to your casual outfits.",
+            "PieceDetails": ["Black color", "Short sleeves", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer":"Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["XXS", "XS", "S", "M"],
+            "color": ["black"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/All-black-female-shirt.jpg", "/Images/Products/All-black-female-shirt-2.jpg", "/Images/Products/All-black-female-shirt-3.jpg", "/Images/Products/All-black-female-shirt-4.jpg"],
+            "rating": {
+                "rate": 4.0,
+                "count": 256
+            }
+        },
+        {
+            "id": 10,
+            "title": "Long Sleeve Pink Unissex Shirt",
+            "price": 80.00,
+            "description": "Unissex long-sleeved pink shirt, part of our T-shirts collection. Crafted for comfort and style, this shirt is perfect for various occasions. Available in sizes XS, S, M, and L, the pink color adds a feminine and trendy touch to your look.",
+            "PieceDetails": ["Pink color", "Long sleeves", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["pink"],
+            "gender": "unissex",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/pink-sweater-front.jpg", "/Images/Products/pink-sweater-front-2.jpg", "/Images/Products/pink-sweater-front-3.jpg", "/Images/Products/pink-sweater-front-4.jpg"],
+            "rating": {
+                "rate": 4.5,
+                "count": 212
+            }
+        },
+        {
+            "id": 11,
+            "title": "Beige Social Female Coat",
+            "price": 170.50,
+            "description": "Women's beige social coat, perfect for formal occasions from our Social collection. Crafted for sophistication, this coat is available in sizes XS, S, and M. The beige color adds a timeless and elegant touch to your formal attire.",
+            "PieceDetails": ["Beige color", "Social style", "Long sleeves", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Social"],
+            "sizes": ["XS", "S", "M"],
+            "color": ["brown"],
+            "gender": "female",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/Beige-social-female-coat.jpg", "/Images/Products/Beige-social-female-coat-2.jpg", "/Images/Products/Beige-social-female-coat-3.jpg", "/Images/Products/Beige-social-female-coat-4.jpg", "/Images/Products/Beige-social-female-coat-5.jpg"],
+            "rating": {
+                "rate": 4.7,
+                "count": 79
+            }
+        },
+        {
+            "id": 12,
+            "title": "Soft White Unissex T-shirt",
+            "price": 69.99,
+            "description": "Unisex soft white T-shirt, part of our T-shirts collection. Crafted for comfort, this T-shirt is available in sizes XS, S, and M, offering a versatile fit. The classic white color adds a fresh and timeless touch to your casual wardrobe.",
+            "PieceDetails": ["White color", "Short sleeves", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["XS", "S", "M"],
+            "color": ["white"],
+            "gender": "unissex",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/white-t-shirt.jpg", "/Images/Products/white-t-shirt-2.jpg", "/Images/Products/white-t-shirt-3.jpg", "/Images/Products/white-t-shirt-4.jpg"],
+            "rating": {
+                "rate": 4.8,
+                "count": 279
+            }
+        },
+        {
+            "id": 13,
+            "title": "Monkey D Luffy Nika God sweatshirt",
+            "price": 179.99,
+            "description": "Unisex Monkey D Luffy Nika God sweatshirt, part of our Sweater And Jackets collection. Crafted for comfort and style, this sweatshirt is available in sizes S, M, L, and XL. The white color adds a fresh and bold touch to your casual outfits.",
+            "PieceDetails": ["White color", "Long sleeves", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Sweater And Jackets"],
+            "sizes": ["S", "M", "L", "XL"],
+            "color": ["white"],
+            "gender": "unissex",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/Luffy-jacket.jpg", "/Images/Products/Luffy-jacket-2.png", "/Images/Products/Luffy-jacket-3.png", "/Images/Products/Luffy-jacket-4.png"],
+            "rating": {
+                "rate": 5.0,
+                "count": 56
+            }
+        },
+        {
+            "id": 14,
+            "title": "Male T-shirt with Cartoons",
+            "price": 79.99,
+            "description": "Men's T-shirt with cartoons, part of our T-shirts collection. Crafted for a playful and casual look, this T-shirt is available in sizes XS, S, M, and L. The brown color adds warmth and style to your casual wardrobe.",
+            "PieceDetails": ["Brown color", "Short sleeves", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["brown"],
+            "gender": "male",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Cartoon-t-shirt.jpg", "/Images/Products/Cartoon-t-shirt-2.png", "/Images/Products/Cartoon-t-shirt-3.png", "/Images/Products/Cartoon-t-shirt-4.png"],
+            "rating": {
+                "rate": 4.5,
+                "count": 74
+            }
+        },
+        {
+            "id": 15,
+            "title": "Kit Five Basic Panties",
+            "price": 59.99,
+            "description": "Women's kit of five basic panties, part of our Underwear & Pajamas collection. Crafted for comfort, this kit is available in sizes XXS, XS, S, M, L, and XL. The black color adds a classic and versatile touch to your lingerie collection.",
+            "PieceDetails": ["Black color", "Set of five", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Underwear and pajamas"],
+            "sizes": ["XXS", "XS", "S", "M", "L", "XL"],
+            "color": ["black"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Panties.jpg", "/Images/Products/Panties-2.jpg"],
+            "rating": {
+                "rate": 3.8,
+                "count": 279
+            }
+        },
+        {
+            "id": 16,
+            "title": "Kit Seven Basic underpants",
+            "price": 59.99,
+            "description": "Unisex kit of seven basic underpants, part of our Underwear & Pajamas collection. Crafted for comfort, this kit is available in sizes XXS, XS, S, M, L, and XL. The black color adds a classic and versatile touch to your underwear collection.",
+            "PieceDetails": ["Black color", "Set of seven", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["Underwear and pajamas"],
+            "sizes": ["XXS", "XS", "S", "M", "L", "XL"],
+            "color": ["black"],
+            "gender": "unissex",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/Underpants.jpg", "/Images/Products/Underpants-2.jpg"],
+            "rating": {
+                "rate": 5.0,
+                "count": 297
+            }
+        },
+        {
+            "id": 17,
+            "title": "Soft Black Unissex T-shirt",
+            "price": 69.99,
+            "description": "Unisex soft Black T-shirt, part of our T-shirts collection. Crafted for comfort, this T-shirt is available in sizes XS, S, and M, offering a versatile fit. The blue color adds a fresh and casual touch to your wardrobe.",
+            "PieceDetails": ["Blue color", "Short sleeves", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category": ["T-shirts"],
+            "sizes": ["XS", "S", "M"],
+            "color": ["black"],
+            "gender": "unissex",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Black-unissex-t-shirt.jpg", "/Images/Products/Black-unissex-t-shirt-2.jpg", "/Images/Products/Black-unissex-t-shirt-3.jpg", "/Images/Products/Black-unissex-t-shirt-4.jpg"],
+            "rating": {
+                "rate": 4.8,
+                "count": 159
+            }
+        },
+        {
+            "id": 18,
+            "title": "Light Gray Unissex Blouse",
+            "price": 69.99,
+            "description": "Unisex Light Gray blouse, part of our Sweater And Jackets collection. Crafted for comfort and style, this blouse is available in sizes M, L, XL, and XXL. The classic white color adds a fresh and timeless touch to your casual wardrobe.",
+            "PieceDetails": ["White color", "Wide fit", "Unisex fit", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category":[ "Sweater And Jackets"],
+            "sizes": ["M", "L", "XL", "XXL"],
+            "color": ["gray"],
+            "gender": "unissex",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Light-Gray-unissex-blouse.jpg", "/Images/Products/Light-Gray-unissex-blouse-2.jpg", "/Images/Products/Light-Gray-unissex-blouse-3.jpg", "/Images/Products/Light-Gray-unissex-blouse-4.jpg"],
+            "rating": {
+                "rate": 4.0,
+                "count": 289
+            }
+        },
+        {
+            "id": 19,
+            "title": "Female Dark Gray and Pink Jacket",
+            "price": 169.99,
+            "description": "Women's dark gray and pink jacket, a versatile addition to our Sweater And Jackets and Sport Clothes collections. Crafted for comfort and style, this jacket is available in sizes XS, S, M, and L. The gray color adds a neutral base, while the pink details bring a touch of femininity.",
+            "PieceDetails": ["Gray color", "Pink details", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category":[ "Sweater And Jackets", "Sport Clothes"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["gray", "pink"],
+            "gender": "female",
+            "freeShipping": true,
+            "hot": false,
+            "image": ["/Images/Products/Female-dark-gray-and-pink-jacket.jpg", "/Images/Products/Female-dark-gray-and-pink-jacket-2.jpg", "/Images/Products/Female-dark-gray-and-pink-jacket-3.jpg", "/Images/Products/Female-dark-gray-and-pink-jacket-4.jpg"],
+            "rating": {
+                "rate": 4.3,
+                "count": 103
+            }
+        },
+        {
+            "id": 20,
+            "title": "Elegant Blue Suit",
+            "price": 199.99,
+            "description": "Men's elegant blue suit, perfect for formal occasions from our Social collection. Crafted for sophistication, this suit is available in sizes XS, S, M, and L. The blue color adds a classic and elegant touch to your formal attire.",
+            "PieceDetails": ["Blue color", "Social style", "Boat neckline"],
+            "country": "Brazil",
+            "Manufacturer": "Own manufacturing",
+            "category":["social"],
+            "sizes": ["XS", "S", "M", "L"],
+            "color": ["blue"],
+            "gender": "male",
+            "freeShipping": false,
+            "hot": false,
+            "image": ["/Images/Products/elegant-blue-suit.jpg", "/Images/Products/elegant-blue-suit-2.jpg", "/Images/Products/elegant-blue-suit-3.jpg", "/Images/Products/elegant-blue-suit-4.jpg"],
+            "rating": {
+                "rate": 4.9,
+                "count": 103
+            }
+        }
+    ],
+    
+    "footerInfo":{
+        "helpItems": [
+            "Delivery",
+            "Devolution",
+            "Payment",
+            "Security",
+            "My Account",
+            "My Requests",
+            "Call Center"
+        ],
+        "institucionalItems": [
+            "About",
+            "Work with us",
+            "Privacy Policy",
+            "Terms of Use",
+            "Sustainability"
+        ],
+        "customerServiceItems": [
+            "Contact Us",
+            "Payment method",
+            "Bonus Points"
+        ]
+    }
+}

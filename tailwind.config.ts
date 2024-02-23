@@ -13,8 +13,39 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors:{
+        grayVariant: "#F8F4F4",
+      },
+      keyframes: {
+        slideDown: {
+          "0%": {
+            height: "0",
+            opacity: "0"
+          },
+          "100%": {
+            height: "fit-content",
+            opacity: "1"
+          }
+        },
+        slideUp: {
+          "0%": {
+            height: "100%",
+          },
+          "100%": {
+            height: "0",
+            opacity: "0",
+            display: "hidden"
+          }
+        }
+      },
+      animation: {
+        "slide-Down": "slideDown 0.4s forwards ease-in",
+        "slide-Up": "slideUp 0.4s forwards ease-out",
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 };
 export default config;

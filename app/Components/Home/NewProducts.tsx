@@ -19,7 +19,7 @@ const NewProdcuts = () => {
         getProducts();
     }, [domain]);
 
-    const filteredProducts = newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
+    const filteredProducts = newProducts.length !== 0 && newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
 
     return filteredProducts && (
         <div id='newProducts'>

@@ -1,6 +1,9 @@
+'use server';
+import { productsProps } from "../Types/route";
+
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
-export const FetchProducts = async () => {
+export const FetchProducts = async (): Promise<Array<productsProps> | undefined> => {
     const productsUrl = `${domain}/api/FetchProducts`;
 
     try {

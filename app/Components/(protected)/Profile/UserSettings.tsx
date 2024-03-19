@@ -10,6 +10,8 @@ import { BsToggle2Off, BsToggle2On } from 'react-icons/bs';
 
 import FancyInput from '@/app/Components/Layout/Inputs/FancyInput';
 import Button from '@/app/Components/Layout/Button';
+import { useRouter } from 'next/navigation';
+import { UseFetch } from '@/app/Hooks/UseFetch';
 
 type UserSettingsProps = {
     userProvider: string,
@@ -17,9 +19,18 @@ type UserSettingsProps = {
     userName: string
 }
 
-const UserSettings = ({ userProvider, userEmail: email, userName: name }: UserSettingsProps) => {
+const UserSettings = ({ 
+    userProvider, 
+    userEmail: email, 
+    userName: name 
+}: UserSettingsProps) => {
     const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
+
     const [isTwoFactorSelected, setIsTwoFactorSelected] = useState<boolean>();
+
+    const router = useRouter();
 
     const {
         register,
@@ -37,29 +48,16 @@ const UserSettings = ({ userProvider, userEmail: email, userName: name }: UserSe
     });
 
     const PUT: SubmitHandler<FieldValues> = async (data) => {
-        let updateData = {
+        let updatedData = {
             ...data,
             twoFactor: isTwoFactorSelected
         };
 
-        const url = `${domain}/api/UpdateUserData`;
-        try {
-            const response = await fetch(url, 
-                {
-                    method: "PUT",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(updateData)
-                }
-            );
-            const resJson = await response.json();
-            if(resJson.success) toast.success(resJson.success);
-            else toast.error(resJson.error);
-        } catch (error) {
-            console.log('error: ', error);
-            toast.error('Something Went Wrong!');
-        }
+        fetching(`${domain}/api/UpdateUserData`, "PUT", "application/json", updatedData);
+
+        setTimeout(() => {
+            router.refresh();
+        }, 1500);
     }
 
     return(

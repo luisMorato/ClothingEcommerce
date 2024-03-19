@@ -1,15 +1,24 @@
 'use client';
 import { useRouter } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { 
+    Suspense, 
+    useCallback, 
+    useEffect, 
+    useMemo, 
+    useState 
+} from "react";
+import toast from "react-hot-toast";
 
-import { FetchCartProducts, FetchProducts } from "@/app/utils/FetchingFunctions";
-import { productsProps } from "@/app/Types/route";
+import { UseFetch } from "@/app/Hooks/UseFetch";
+import { productToAddProps, productsProps } from "@/app/Types/route";
 
 import CartCard from "@/app/Components/Layout/Cart/CartCard";
-import Loading from "@/app/loading";
 
 const Cart = ({ currentUserId }: {currentUserId: string}) => {
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
     const router = useRouter();
+
+    const { fetching } = UseFetch();
 
     const [cartProducts, setCartProducts] = useState<Array<{
         id: string,
@@ -23,8 +32,8 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
         const fetchData = async () => {
             try {
                 const [cartResponse, productsResponse] = await Promise.all([
-                    FetchCartProducts(currentUserId),
-                    FetchProducts()
+                    fetching(`${domain}/api/CartApi?id=${currentUserId}`, "GET", "application/json"),
+                    fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
                 ]);
     
                 setCartProducts(cartResponse);
@@ -35,11 +44,19 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
         }
     
         fetchData();
-    }, [currentUserId, cartProducts]);
+    }, [currentUserId, cartProducts, domain, fetching]);
 
-    const filteredData = cartProducts && products && products.filter((product) => cartProducts.some(({ productId }) => productId === product?.id));
+    const filteredData = products?.filter((product) => cartProducts?.some(({ productId }) => productId === product?.id));
 
-    const subtotal = filteredData?.map((product) => product!.price * (cartProducts.find(({ productId }) => productId === product?.id))!.quantity);
+    const subtotal = useMemo(() => (filteredData?.map((product) => product!.price * (cartProducts.find(({ productId }) => productId === product?.id))!.quantity)), [filteredData, cartProducts]);
+
+    const subtractPOST = useCallback( async (productToAddOrSubtract: productToAddProps) => {
+        await fetching(`${domain}/api/CartApi`, "PUT", "application/json", productToAddOrSubtract);
+    }, [domain, fetching]);
+
+    const RemoveProduct = useCallback( async (productId: number) => {
+        await fetching(`${domain}/api/CartApi`, "DELETE", "application/json", productId);
+    }, [domain, fetching]);
 
     return filteredData && (
         <div className={`absolute top-full -right-[22px] w-fit h-fit bg-[#FAFAFA] rounded-lg mt-2 border z-40 px-3
@@ -47,9 +64,9 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
         `}>
             <h1 className="text-2xl font-semibold my-2">Cart</h1>
             <Suspense 
-                fallback={<Loading />}
+                fallback={<p>...Loading</p>}
             >
-                { filteredData?.length !== 0 ?
+                {filteredData.length !== 0 ?
                     filteredData &&
                     <div className="bg-white px-2 py-3 mb-2 rounded-lg shadow-sm">
                         <div 
@@ -69,6 +86,8 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
                                     key={product.id}
                                     product={product}
                                     cartProducts={cartProducts}
+                                    subtractPOST={subtractPOST}
+                                    RemoveProduct={RemoveProduct}
                                 />
                                 ))
                             } 
@@ -79,7 +98,7 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
                         </div>
                         <div className="flex items-center justify-end gap-3 w-full mt-4">
                             <button
-                            onClick={() => router.push(`/CheckOut?id=${currentUserId}`)}
+                                onClick={() => router.push(`/CheckOut`)}
                                 className="bg-black text-white font-semibold tracking-[2px] px-3 py-2 rounded-md border border-black w-full hover:bg-transparent hover:text-black"
                             >
                                 Checkout

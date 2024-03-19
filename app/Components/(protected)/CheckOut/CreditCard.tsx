@@ -1,6 +1,10 @@
 'use client';
 import { useState } from "react";
-import { FaCcMastercard, FaCcVisa, FaCreditCard  } from "react-icons/fa";
+import { 
+    FaCcMastercard, 
+    FaCcVisa, 
+    FaCreditCard
+} from "react-icons/fa";
 import DefaultInput from "@/app/Components/Layout/Inputs/DefaultInput";
 
 const CreditCard = () => {

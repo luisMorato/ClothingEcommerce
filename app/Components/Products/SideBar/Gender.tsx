@@ -6,7 +6,10 @@ type genderProps= {
     gender: string
 }
 
-const Gender = ({ setGender, gender }: genderProps) => {
+const Gender = ({ 
+    setGender, 
+    gender 
+}: genderProps) => {
     return(
         <div className="mb-6">
             <h2 className='text-2xl mb-3'>Gender</h2>

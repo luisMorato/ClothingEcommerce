@@ -4,7 +4,7 @@ import { productToAddProps } from "@/app/Types/route";
 const domain = process.env.NEXT_PUBLIC_APP_URL;
 
 export const AddProduct = async (productToAdd: productToAddProps) => {
-    const url = `${domain}/api/AddCartProduct`;
+    const url = `${domain}/api/CartApi`;
     try {
         const response = await fetch(url,
             {

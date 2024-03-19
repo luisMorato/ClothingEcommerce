@@ -19,8 +19,8 @@ const ClothesAdvertising = () => {
                     <h2 className="text-white text-3xl tracking-[2px] font-semibold">,99</h2>
                 </span>
             </section>
-            <Image className="max-[520px]:hidden block md:hidden" src="/Images/relaxed-young-woman-leaning-grey-wall-with-her-raised-hands.jpg" alt="Advertising" fill quality={70} />
-            <Image className="hidden md:block" src="/Images/Advertising.png" alt="Advertising" fill quality={70} />
+            <Image className="max-[520px]:hidden block md:hidden" src="/Images/relaxed-young-woman-leaning-grey-wall-with-her-raised-hands.jpg" alt="Advertising" fill quality={70} sizes="100%"/>
+            <Image className="hidden md:block" src="/Images/Advertising.png" alt="Advertising" fill quality={70} sizes="100%"/>
             <button
                 className="absolute max-[520px]:left-1/2 max-[520px]:-translate-x-1/2 bottom-8 right-8 text-nowrap border border-white text-white py-1 px-12 w-fit hover:bg-black hover:text-white hover:border-black
                 md:left-1/2 

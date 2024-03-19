@@ -1,5 +1,8 @@
 'use client';
-import { useSearchParams, useRouter } from "next/navigation";
+import { 
+    useSearchParams,
+    useRouter 
+} from "next/navigation";
 
 const PaginationControl = ({ productsQuantity }: {productsQuantity: number}) => {
     const searchParams = useSearchParams();

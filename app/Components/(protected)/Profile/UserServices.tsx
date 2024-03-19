@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { LuEye } from "react-icons/lu";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { PiHeadsetDuotone } from "react-icons/pi";
 import { TbShieldHalf } from "react-icons/tb";
-import { LuEye } from "react-icons/lu";
 
 const UserServices = () => {
     return(

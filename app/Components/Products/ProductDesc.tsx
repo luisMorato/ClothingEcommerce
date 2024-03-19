@@ -2,12 +2,19 @@
 import Link from "next/link";
 import { useState } from "react";
 import { IoMdStar } from "react-icons/io";
-import { FaMinus, FaPlus, FaShoppingCart } from "react-icons/fa";
+import { 
+    FaMinus, 
+    FaPlus, 
+    FaShoppingCart 
+} from "react-icons/fa";
 
-import { productToAddProps, productsProps } from "@/app/Types/route";
+import { 
+    productToAddProps, 
+    productsProps 
+} from "@/app/Types/route";
+import { AddProduct } from "@/app/utils/AddToCart";
 
 import Button from "@/app/Components/Layout/Button";
-import { AddProduct } from "@/app/utils/AddToCart";
 
 const ProductDesc = ({ product }: { product: productsProps }) => {
     const number = Math.floor(Math.random() * 6);
@@ -24,10 +31,10 @@ const ProductDesc = ({ product }: { product: productsProps }) => {
             <h1 className="text-[28px]">{product.title}</h1>
             <div className="flex gap-2">
                 <div className="flex text-lg">
-                    {ratingArray.map((index) => (
+                    {ratingArray.map((item, index) => (
                         <IoMdStar 
                             key={`star-${index}`}
-                            className={product.rating.rate >= index ? "text-yellow-400 cursor-pointer" : "text-neutral-400"}
+                            className={product.rating.rate >= item ? "text-yellow-400 cursor-pointer" : "text-neutral-400"}
                         />
                     ))}
                 </div>

@@ -1,7 +1,11 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { 
+    useEffect, 
+    useMemo, 
+    useState 
+} from 'react';
 
-import { FetchProducts } from '@/app/utils/FetchingFunctions';
+import { UseFetch } from '@/app/Hooks/UseFetch';
 import { productsProps } from "@/app/Types/route";
 
 import ProductImages from '@/app/Components/Products/ProductImages';
@@ -9,19 +13,23 @@ import ProductDesc from '@/app/Components/Products/ProductDesc';
 import MoreInfo from '@/app/Components/Products/MoreInfo';
 
 const ProductPage = ({ params }: any) => {
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
+
     const [products, setProducts] = useState<Array<productsProps>>();
 
     useEffect(() => {
-        const fetch = async () => {
-            const Productsresponse = await FetchProducts();
+        const getData = async () => {
+            const Productsresponse = await fetching(`${domain}/api/FetchProducts`, "GET", "application/json");
             setProducts(Productsresponse);
         }
-        fetch();
-    }, []);
+        getData();
+    }, [domain, fetching]);
 
-    const product: productsProps = products?.find(( product ) => product?.id === Number(params.ProductsId));
+    const currentProduct: productsProps | undefined = useMemo(() => (products?.find(( product ) => product?.id === Number(params.ProductsId))), [params.ProductsId, products]);
 
-    return product && (
+    return currentProduct && (
         <div className='flex flex-col mt-5 mb-12
         lg:mt-[72px]'>
             <div 
@@ -37,12 +45,12 @@ const ProductPage = ({ params }: any) => {
             >
                 <div>
                     <ProductImages
-                        product={product}
+                        product={currentProduct}
                     />
                 </div>
                 <div>
                     <ProductDesc
-                        product={product}
+                        product={currentProduct}
                     />
                 </div>
             </div>

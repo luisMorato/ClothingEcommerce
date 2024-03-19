@@ -1,6 +1,13 @@
 'use client';
-import { usePathname, useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import { 
+    usePathname, 
+    useRouter 
+} from "next/navigation";
+import React, 
+{ 
+    useCallback, 
+    useContext 
+}from "react";
 import { FaSearch } from 'react-icons/fa';
 
 import { User } from "@prisma/client";
@@ -16,13 +23,13 @@ const Navbar = ({ currentUser }: {currentUser: User | null}) => {
 
     const { setSearch } = useContext(SearchContext);
 
-    const checkCurrentPathname = () => {
+    const checkCurrentPathname = useCallback(() => {
         if(currentPathname !== '/Products'){
             router.push('/Search');
         }else{
             return;
         }
-    }
+    }, [currentPathname, router]);
 
     const checkKeyPressed = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.key === 'Enter' && currentPathname !== '/Products'){
@@ -35,7 +42,8 @@ const Navbar = ({ currentUser }: {currentUser: User | null}) => {
     return (
         <div className="w-[84%] flex justify-between items-center">
             <Logo />
-            <div 
+            {currentPathname !== "/CheckOut" &&
+                (<div 
                 className="hidden 
                 md:block
                 md:w-[40%]
@@ -53,7 +61,7 @@ const Navbar = ({ currentUser }: {currentUser: User | null}) => {
                     onClick={checkCurrentPathname}
                     onkeyup={checkKeyPressed}
                 />
-            </div>
+            </div>)}
             <UserButtons 
                 currentUser={currentUser}
             />

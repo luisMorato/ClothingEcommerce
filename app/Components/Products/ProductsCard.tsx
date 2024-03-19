@@ -1,37 +1,43 @@
 'use client';
 import Image from "next/image";
 import Link from "next/link";
-import { 
+import { usePathname } from "next/navigation";
+import {
     useEffect, 
     useState 
 } from "react";
-import toast from "react-hot-toast";
 import { 
     FaHeart, 
     FaShoppingCart,
     FaChevronRight,
     FaChevronLeft
 } from 'react-icons/fa';
-
-import Button from "@/app/Components/Layout/Button";
+import toast from "react-hot-toast";
 
 import { 
     productsProps, 
     productToAddProps 
 } from '@/app/Types/route';
 import { AddProduct } from "@/app/utils/AddToCart";
+import { getCurrentUser } from "@/app/utils/GetUser";
+
+import Button from "@/app/Components/Layout/Button";
 
 type productsCardProps = {
     product: productsProps, 
-    wishListProductsIds: Array<number> | undefined
+    wishListProductsIds?: Array<number> | undefined,
+    addToWishList?: (productIdLiked: number) => void
+    removeFromWishList?: (productIdLiked: number) => void
 }
 
 const ProductsCard = ({
         product,
-        wishListProductsIds
+        wishListProductsIds,
+        addToWishList,
+        removeFromWishList
     }: productsCardProps
 ) => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
+    const currentPathname = usePathname();
 
     const [imageIndex, setImageIndex] = useState(0);
 
@@ -41,69 +47,39 @@ const ProductsCard = ({
     });
 
     useEffect(() => {
-        setLiked({...liked, like: wishListProductsIds && wishListProductsIds.length !== 0 && product ? wishListProductsIds.includes(product.id) : false});
-    }, [liked.like, product, wishListProductsIds]);
+        setLiked((prevLiked) => ({
+            ...prevLiked, 
+            like: wishListProductsIds && wishListProductsIds.length !== 0 ? wishListProductsIds.includes(product!.id) : false
+        }));
+    }, [product, wishListProductsIds]);
 
-    const addToWishList = async () => {
-        const url = `${domain}/api/AddToWishList`;
-        try {
-            const response = await fetch(url,
-                {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(liked.productID),
-                }
-            );
-            const resJson = await response.json();
-            if(resJson.success) toast.success(resJson.success);
-            else toast.error(resJson.error);
-        } catch (error) {
-            console.log('error: ', error);
-            toast.error('Error processing the request. Please, try again');
-        }
-    }
-
-    const removeFromWishList = async () => {
-        const url = `${domain}/api/RemoveFromWishList`;
-        try {
-            const response = await fetch(url, 
-                {
-                    method: "DELETE",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(liked.productID)
-                }
-            );
-            const resJson = await response.json();
-            if(resJson.success) toast.success(resJson.success);
-            else toast.error(resJson.error);
-        } catch (error) {
-            console.log('error', error);
-            toast.error('Error processing the request. Please, try again');
-        }
-    }
-
-    const [productToAdd, setProductToAdd] = useState<productToAddProps>({
+    const [productToAdd] = useState<productToAddProps>({
         productId: product?.id as number,
         quantity: 1,
         size: product?.sizes[0] as string,
     });
 
+    const toggleLike = async () => {
+        const user = await getCurrentUser();
+        if(!user){
+            toast.error("No User Logged!");
+            return;
+        }
+        setLiked({...liked, like: !liked.like});
+        if(liked.like) removeFromWishList && removeFromWishList(liked.productID);
+        else addToWishList && addToWishList(liked.productID);
+    }
+
     return product && (
             <div className="relative bg-white rounded-[24px] w-min overflow-hidden pb-4 mb-8 h-[450px]">
-                <FaHeart 
-                    onClick={async () => {
-                        setLiked({...liked, like: !liked.like});
-                        if(liked.like) await removeFromWishList();
-                        else await addToWishList();
-                    }}
-                    className={`absolute right-[18px] top-[14px] z-10 text-[19px] cursor-pointer
-                        ${liked.like ?  "text-rose-500" : "text-neutral-400"}`
-                    }
-                />
+                {currentPathname !== "/Search" &&
+                    <FaHeart
+                        onClick={toggleLike}
+                        className={`absolute right-[18px] top-[14px] z-10 text-[19px] cursor-pointer
+                            ${liked.like ?  "text-rose-500" : "text-neutral-400"}`
+                        }
+                    />
+                }
                 <div className="relative flex flex-col items-center justify-between h-full group">
                     <Link href={`/Products/${product.id}`}>
                         <div className="relative w-[290px] h-[300px] hover:scale-105 duration-200">

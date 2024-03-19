@@ -1,7 +1,6 @@
 'use client';
 import Image from "next/image";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { FaRegTrashAlt, FaShoppingCart } from "react-icons/fa";
 
 import { productToAddProps, productsProps } from "@/app/Types/route";
@@ -10,38 +9,20 @@ import { AddProduct } from "@/app/utils/AddToCart";
 import Button from "@/app/Components/Layout/Button";
 import Link from "next/link";
 
-const WishListCard = ({ product }: {product: productsProps}) => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
+type WishListCardProps = {
+    product: productsProps,
+    removeFromWishList: (productId: number) => void,
+}
 
-    const [productToAdd, setProductToAdd] = useState<productToAddProps>({
+const WishListCard = ({ 
+    product,
+    removeFromWishList
+}: WishListCardProps) => {
+    const [productToAdd] = useState<productToAddProps>({
         productId: product?.id as number,
         quantity: 1,
         size: product?.sizes[0] as string,
     });
-
-    const removeFromWishList = async () => {
-        const url = `${domain}/api/RemoveFromWishList`;
-        try {
-            const response = await fetch(url, 
-                {
-                    method: "DELETE",
-                    headers: {
-                        "content-type": "application/json"
-                    },
-                    body: JSON.stringify(product!.id)
-                }
-            );
-            const resJson = await response.json();
-            if(resJson.success) {
-                toast.success(resJson.success);
-
-            }
-            else toast.error(resJson.error);
-        } catch (error) {
-            console.log('error', error);
-            toast.error('Error processing the request. Please, try again');
-        }
-    }
 
     return product && (
             <tr className="flex items-center justify-evenly gap-14 border-t
@@ -99,7 +80,7 @@ const WishListCard = ({ product }: {product: productsProps}) => {
                             <FaRegTrashAlt 
                                 className="text-lg text-neutral-400 cursor-pointer hover:text-red-600
                                 md:text-2xl"
-                                onClick={removeFromWishList}
+                                onClick={() => removeFromWishList(product.id)}
                             />
                         </div>
                     </div>

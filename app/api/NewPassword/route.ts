@@ -10,7 +10,7 @@ export const PUT = async (req: Request) => {
         const data = await NewPassword(password, token);
 
         if(data){
-            if(data?.success){
+            if(data.success){
                 return NextResponse.json({success: data.success, ok: data.ok}, {status: data.status});
             }
             return NextResponse.json({error: data.error, ok: data.ok}, {status: data.status});

@@ -2,46 +2,53 @@
 import Link from "next/link";
 import { 
     Suspense,
+    useCallback,
     useEffect,
     useState
 } from "react";
 import { CiHeart } from "react-icons/ci";
 
-import { FetchProducts, FetchWishList } from "@/app/utils/FetchingFunctions";
+import { UseFetch } from "@/app/Hooks/UseFetch";
+import { getCurrentUser } from "@/app/utils/GetUser";
 import { productsProps } from "@/app/Types/route";
 
 import WishListCard from "@/app/Components/(protected)/WishList/WishListCard";
 import Loading from "@/app/loading";
 import Button from "@/app/Components/Layout/Button";
-import { useSearchParams } from "next/navigation";
 
 const WishList = () => {
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
+
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
     const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
 
-    const searchParams = useSearchParams();
-    const userId = searchParams.get('id');
-
     useEffect(() => {
         const fetchData = async () => {
+            const currentUser = await getCurrentUser();
+
             try {
                 const [productsResponse, WishListResponse] = await Promise.all([
-                    FetchProducts(),
-                    FetchWishList(userId as string)
+                    fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
+                    fetching(`${domain}/api/WishListApi?id=${currentUser?.id}`, "GET", "application/json"),
                 ]);
 
                 setProducts(productsResponse);
                 setWishListProcutsIds(WishListResponse);
-                // window.alert(JSON.stringify(WishListResponse));
             } catch (error) {
                 console.log('error: ', error);
             }
         }
 
         fetchData();
-    }, [wishListProductsIds]);
+    }, [wishListProductsIds, domain, fetching]);
 
     const wishListProducts: productsProps[] | undefined = wishListProductsIds && products && products.filter((product) => wishListProductsIds.some((id) => product!.id === id));
+
+    const removeFromWishList = useCallback(async (productId: number) => {
+        fetching(`${domain}/api/WishListApi`, "DELETE", "application/json", productId);
+    }, [domain, fetching]);
    
     return wishListProducts && (
         <div className="flex flex-col items-center py-12">
@@ -102,6 +109,7 @@ const WishList = () => {
                                     <WishListCard
                                         key={product.id}
                                         product={product}
+                                        removeFromWishList={removeFromWishList}
                                     />
                                 ))}
                             </Suspense>

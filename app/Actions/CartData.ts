@@ -124,14 +124,14 @@ export const SubtractProduct = async (productId: number, quantity: number) => {
         select: {
             products: {
                 where: {
-                    productId: productId,
+                    productId: Number(productId),
                 }
             }
         }
     });
 
     if(existingCartProduct?.products.some(({ quantity }) => quantity <= 1)){
-        const remove = await RemoveCartProduct(currentUser.id, productId);
+        const remove = await RemoveCartProduct(currentUser.id, Number(productId));
         if(remove?.success){
             return ({success: remove.success, ok: remove.ok, status: remove.status });
         }
@@ -147,7 +147,7 @@ export const SubtractProduct = async (productId: number, quantity: number) => {
                 products: {
                     updateMany: {
                         where: {
-                            productId: productId,
+                            productId: Number(productId),
                         },
                         data: {
                             quantity: {
@@ -175,7 +175,7 @@ export const RemoveCartProduct = async (userId: string, productId: number) => {
         data: {
             products: {
                 deleteMany: {
-                    productId: productId
+                    productId: Number(productId)
                 }
             }
         }

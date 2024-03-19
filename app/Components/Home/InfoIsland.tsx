@@ -1,5 +1,8 @@
 import Image from 'next/image';
-import { FaShippingFast, FaDollarSign  } from 'react-icons/fa';
+import { 
+    FaShippingFast, 
+    FaDollarSign
+} from 'react-icons/fa';
 
 const InfoIsland = () => {
     return(

@@ -32,7 +32,6 @@ const NewPassword = () => {
 
     const PUT: SubmitHandler<FieldValues> = async ({ NewPassowrd }) => {
         const url = `${domain}/api/NewPassword`;
-
         try {
             const response = await fetch(url, 
               {

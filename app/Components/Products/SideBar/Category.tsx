@@ -10,7 +10,11 @@ type categoryProps = {
     currentCategory: string
 }
 
-const Category = ({ selectedCategory, products }: categoryProps) => {
+const Category = ({ 
+    selectedCategory, 
+    products,
+    currentCategory
+}: categoryProps) => {
     const availableCategories: Array<string> = useMemo(() => {
         const setCategories: Set<string> = new Set();
         if (products) {

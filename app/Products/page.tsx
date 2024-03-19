@@ -1,6 +1,7 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 import {
+    useCallback,
     useContext, 
     useEffect, 
     useState 
@@ -8,22 +9,27 @@ import {
 
 import { SearchContext } from '@/app/Context/ContextSearch';
 import { productsProps } from '@/app/Types/route';
-import { FetchProducts, FetchWishList } from '@/app/utils/FetchingFunctions';
+import { UseFetch } from '@/app/Hooks/UseFetch';
+import { getCurrentUser } from '@/app/utils/GetUser';
 
 import SideBar from '@/app/Components/Products/SideBar/SideBar';
 import OrderBySelectInput from '@/app/Components/Products/OrderBySelectInput';
 import ProductsCard from '@/app/Components/Products/ProductsCard';
 import PaginationControl from '@/app/Components/Products/PaginationControl';
 import SkeletonLoading from '@/app/Products/SkelentonLoading';
-import { getCurrentUser } from '../utils/GetUser';
 
 const Products = () => {
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
+
     const { search } = useContext(SearchContext);
     const [isLoading, setIsLoading] = useState(true);
     
     const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
 
-    const [orderBy, setOrderBy] = useState('');
+    const [orderBy, setOrderBy] = useState<string>('');
+    
 
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
     const [filteredProducts, setFilteredProducts] = useState<productsProps[] | undefined>([]);
@@ -45,15 +51,18 @@ const Products = () => {
 
             try {
                 const [productsResponse, WishListResponse] = await Promise.all([
-                    FetchProducts(),
-                    FetchWishList(currentUser?.id as string)
+                    fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
+                    fetching(`${domain}/api/WishListApi?id=${currentUser?.id}`, "GET", "application/json"),
                 ]);
 
-                setProducts(productsResponse);
+                setProducts((prevProducts) => [
+                    prevProducts,
+                    ...productsResponse
+                ]);
                 
-                let filtered = products;
+                let filtered:productsProps[] = productsResponse;
     
-                if(products && filtered){
+                if(filtered){
                     if (urlCategory) {
                         filtered = filtered.filter(product => product!.category.toString().toLowerCase().replace(/ /g, '').includes(urlCategory.toLowerCase().replace(/ /g, '')));
                         setFilteredProducts(filtered);
@@ -70,68 +79,70 @@ const Products = () => {
                 }
 
                 setFilteredProducts(productsResponse);
-
                 setWishListProcutsIds(WishListResponse);
-                setIsLoading(false);
             } catch (error) {
                 console.log('error: ', error);
+            }finally{
+                setIsLoading(false);
             }
         }
 
         fetchData();
-    }, [urlCategory, urlGender]);
+    }, [urlCategory, urlGender, domain, fetching]);
 
-    const productsSliced = filteredProducts && filteredProducts.slice(start, end);
+    const productsSliced = filteredProducts?.slice(start, end);
 
     //Sort
     useEffect(() => {
         const sortProducts = () => {
             let sorted = filteredProducts;
-            
-            if(sorted){
-                if(orderBy){
-                    switch(orderBy){
-                        case "mostWanted":{
-                            return [...sorted].sort((productA, productB) => {
-                                return productB!.rating.rate - productA!.rating.rate;
-                            });
-                        }
-                        case "bestSeller": {
-                            return [...sorted].sort((productA, productB) => {
-                                return productB!.rating.count - productA!.rating.count;
-                            });
-                        }
-                        case "moreRecent": {
-                            return [...sorted].sort((productA, productB) => {
-                                if(productA?.hot === productB?.hot){
-                                    return 0;
-                                }
-                                if(productA?.hot){
-                                    return -1;
-                                }
 
-                                return 1;
-                            });
-                        }
-                        case "biggestPrice": {
-                            return [...sorted].sort((productA, productB) => {
-                                return productB!.price - productA!.price;
-                            });
-                        }
-                        case "lowestPrice": {
-                            return [...sorted].sort((productA, productB) => {
-                                return productA!.price - productB!.price;
-                            });
-                        }
+            if(sorted){
+                switch(orderBy){
+                    case "mostWanted":{
+                        return [...sorted].sort((productA, productB) => {
+                            return productB!.rating?.rate - productA!.rating?.rate;
+                        });
+                    }
+                    case "bestSeller": {
+                        return [...sorted].sort((productA, productB) => {
+                            return productB!.rating?.count - productA!.rating?.count;
+                        });
+                    }
+                    case "moreRecent": {
+                        return [...sorted].sort((productA, productB) => {
+                            if(productA?.hot === productB?.hot) return 0;
+                            return productA?.hot ? -1 : 1;
+                        });
+                    }
+                    case "biggestPrice": {
+                        return [...sorted].sort((productA, productB) => {
+                            return productB!.price - productA!.price;
+                        });
+                    }
+                    case "lowestPrice": {
+                        return [...sorted].sort((productA, productB) => {
+                            return productA!.price - productB!.price;
+                        });
                     }
                 }
             }
+            
+            return sorted;
         }
 
         const SortedPorducts = sortProducts();
         setFilteredProducts(SortedPorducts);
     }, [orderBy]);
 
+    //WishList Functions
+    const addToWishList = useCallback( async (productIdLiked: number) => {
+        await fetching(`${domain}/api/WishListApi`, "POST", "application/json", productIdLiked);
+    }, [domain, fetching]);
+
+    const removeFromWishList = useCallback( async (productIdLiked: number) => {
+        await fetching(`${domain}/api/WishListApi`, "DELETE", "application/json", productIdLiked);
+    }, [domain, fetching]);
 
     return filteredProducts && productsSliced && (
         <div className='flex'>
@@ -145,7 +156,7 @@ const Products = () => {
                 <div className='w-[88%] mx-auto py-6'>
                     <div className="flex justify-between mb-10">
                         <h2 className="text-3xl">Products</h2>
-                        <OrderBySelectInput 
+                        <OrderBySelectInput
                             setOrderBy={setOrderBy}
                         />
                     </div>
@@ -162,13 +173,15 @@ const Products = () => {
                                 2xl:grid-cols-4'
                             >
                                 {productsSliced
-                                .filter((product) => product && product.title.toLowerCase().includes(search.toLowerCase()))
+                                .filter((product) => product.title?.toLowerCase().includes(search.toLowerCase()))
                                 .map((product) => (
                                     product &&
                                     <ProductsCard
                                         key={product.id}
                                         product={product}
                                         wishListProductsIds={wishListProductsIds}
+                                        addToWishList={addToWishList}
+                                        removeFromWishList={removeFromWishList}
                                     />
                                 ))}
                             </div>

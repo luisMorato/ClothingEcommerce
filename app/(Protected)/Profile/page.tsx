@@ -26,9 +26,10 @@ const Profile = async () => {
                     currentUserName={currentUser.name}
                     currentUserImage={currentUser.image}
                 />
-                <div className="flex flex-col 
-                md:max-w-[500px]
-                lg:max-w-[400px]"
+                <div 
+                    className="flex flex-col 
+                    md:max-w-[500px]
+                    lg:max-w-[400px]"
                 >
                     <div className="border border-neutral-300 rounded-3xl px-6 py-3">
                         <h2 className="text-[32px] text-neutral-600 mb-5">Settings</h2>

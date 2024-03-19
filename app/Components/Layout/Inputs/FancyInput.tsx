@@ -23,6 +23,7 @@ const FancyInput = ({
                 type={type}
                 value={value}
                 disabled={disabled}
+                maxLength={type === "password" ? 6 : undefined}
                 className={`w-full rounded-md pl-2 h-full py-2 disabled:cursor-not-allowed text-neutral-400 focus:outline-none peer
                 ${errors[id] ? 'focus:border-rose-500' : ''}
                 `}

@@ -2,7 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { useState } from "react";
+import { 
+    memo, 
+    useState,
+} from "react";
 import { FaShoppingCart } from 'react-icons/fa';
 
 import { AddProduct } from "@/app/utils/AddToCart";
@@ -18,7 +21,7 @@ type NewProductsCardProps = {
 }
 
 const NewProductsCard = ({ id, imgSrc, title, size }: NewProductsCardProps) => {
-    const [productToAdd, setProductToAdd] = useState<productToAddProps>({
+    const [productToAdd] = useState<productToAddProps>({
         productId: id,
         quantity: 1,
         size: size,
@@ -44,4 +47,4 @@ const NewProductsCard = ({ id, imgSrc, title, size }: NewProductsCardProps) => {
     )
 }
 
-export default NewProductsCard;
+export default memo(NewProductsCard);

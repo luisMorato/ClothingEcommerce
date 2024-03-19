@@ -1,23 +1,27 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
-import { FetchProducts } from '@/app/utils/FetchingFunctions';
+import { UseFetch } from '@/app/Hooks/UseFetch';
 import { productsProps } from '@/app/Types/route';
 
 import NewProductsCard from '@/app/Components/Home/NewProductCards';
 
 const NewProdcuts = () => {
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
+
     const [newProducts, setNewProducts] = useState<Array<productsProps> | undefined>([]);
 
     useEffect(() => {
         const getProducts = async () => {
-            const productsResponse = await FetchProducts();
+            const productsResponse = await fetching(`${domain}/api/FetchProducts`, "GET", "application/json");
             setNewProducts(productsResponse);
-        } 
+        }
         getProducts();
-    }, []);
+    }, [domain, fetching]);
 
-    const filteredProducts = newProducts && newProducts.filter((product) => product!.id >= 1 && product!.id <= 4);
+    const filteredProducts = useMemo(() => (newProducts?.filter((product) => product!.id >= 1 && product!.id <= 4)), [newProducts]);
 
     return filteredProducts && (
         <div id='newProducts'>

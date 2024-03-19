@@ -1,16 +1,17 @@
 'use client';
-import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { FetchCartProducts, FetchProducts } from "@/app/utils/FetchingFunctions";
+import { getCurrentUser } from "@/app/utils/GetUser";
+import { UseFetch } from "@/app/Hooks/UseFetch";
 
 import BillingDetailsForm from "@/app/Components/(protected)/CheckOut/BillingDetailsForm";
 import { productsProps } from "@/app/Types/route";
 import OrderDetails from "@/app/Components/(protected)/CheckOut/OrderDetails";
 
 const CheckOut = () => {
-    const searchParams = useSearchParams();
-    const userId = searchParams.get('id');
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
+
+    const { fetching } = UseFetch();
 
     const [cartProducts, setCartProducts] = useState<Array<{
         id: string,
@@ -22,25 +23,29 @@ const CheckOut = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            const currentUser = await getCurrentUser();
+
             try {
                 const [cartResponse, productsResponse] = await Promise.all([
-                    FetchCartProducts(userId as string),
-                    FetchProducts()
+                    fetching(`${domain}/api/CartApi?id=${currentUser?.id}`, "GET", "application/json"),
+                    fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
                 ]);
     
                 setCartProducts(cartResponse);
                 setProducts(productsResponse);
+                console.log('here');
             } catch (error) {
                 console.log('error: ', error);
             }
         }
     
         fetchData();
-    }, [userId, cartProducts]);
+    }, [domain, fetching]);
 
     const filteredData = cartProducts && products && products.filter((product) => cartProducts.some(({ productId }) => productId === product?.id));
 
     const subtotal = filteredData?.map((product) => product!.price * (cartProducts.find(({ productId }) => productId === product?.id))!.quantity);
+
 
     return filteredData && (
         <div className="bg-grayVariant flex w-full h-fit">

@@ -2,10 +2,9 @@ import { FaCheck } from 'react-icons/fa';
 
 type sizingProps = {
     selectedSizes: (size: string) => void
-    sizes: Array<string>
 }
 
-const Sizing = ({ selectedSizes, sizes }: sizingProps) => {
+const Sizing = ({ selectedSizes }: sizingProps) => {
     return(
         <div className="mb-6">
             <h2 className='text-2xl mb-3'>Sizing</h2>

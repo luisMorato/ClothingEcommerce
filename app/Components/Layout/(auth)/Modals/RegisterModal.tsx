@@ -1,6 +1,7 @@
 'use client';
 import { useSearchParams } from 'next/navigation';
 import { signIn } from 'next-auth/react';
+import { AuthError } from 'next-auth';
 import {
     FieldValues,
     SubmitHandler,
@@ -17,7 +18,6 @@ import useLoginModal from "@/app/Hooks/UseLoginModal";
 import Modal from "@/app/Components/Modals/Modal";
 import FancyInput from "@/app/Components/Layout/Inputs/FancyInput";
 import Button from '@/app/Components/Layout/Button';
-import { AuthError } from 'next-auth';
 
 const RegisterModal = () => {
     const domain = process.env.NEXT_PUBLIC_APP_URL;

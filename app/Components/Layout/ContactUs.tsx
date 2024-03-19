@@ -1,6 +1,11 @@
 import Link from 'next/link';
 
-import { FaInstagram, FaLinkedin, FaYoutube, FaGithub } from 'react-icons/fa';
+import { 
+    FaInstagram, 
+    FaLinkedin, 
+    FaYoutube, 
+    FaGithub 
+} from 'react-icons/fa';
 
 import ContactUsForm from '@/app/Components/Layout/ContactUsForm';
 

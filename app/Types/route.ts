@@ -21,7 +21,7 @@ export type productsProps = {
         rate: number,
         count: number
     }
-} | undefined
+}
 
 export type productToAddProps = {
     productId: number | null,

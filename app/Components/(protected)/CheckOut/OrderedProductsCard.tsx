@@ -8,7 +8,11 @@ type OrderedProductsCardProps = {
     quantity: number | undefined
 }
 
-const OrderedProductsCard = ({ product, size, quantity }: OrderedProductsCardProps) => {
+const OrderedProductsCard = ({ 
+    product, 
+    size, 
+    quantity 
+}: OrderedProductsCardProps) => {
     return product && (
         <div className="mr-3 border-b">
             <div className="flex gap-3 mb-2">

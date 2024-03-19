@@ -1,14 +1,19 @@
 'use client';
 import { signIn } from 'next-auth/react';
-import { useRouter, 
-    useSearchParams 
+import { AuthError } from 'next-auth';
+import { 
+    useRouter,
+    useSearchParams
 } from 'next/navigation';
 import { 
     FieldValues,
     SubmitHandler,
     useForm
 } from 'react-hook-form';
-import { useState ,useTransition } from 'react';
+import { 
+    useState, 
+    useTransition 
+} from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { AiFillGithub } from 'react-icons/ai';
 
@@ -19,7 +24,6 @@ import Modal from "@/app/Components/Modals/Modal";
 import FancyInput from "@/app/Components/Layout/Inputs/FancyInput";
 import toast from 'react-hot-toast';
 import Button from '@/app/Components/Layout/Button';
-import { AuthError } from 'next-auth';
 
 const LoginModal = () => {
     const domain = process.env.NEXT_PUBLIC_APP_URL;
@@ -95,6 +99,9 @@ const LoginModal = () => {
                 else {
                     toast.success(resJson.success);
                     router.refresh();
+                    setTimeout(() => {
+                        loginModal.onClose();
+                    }, 1500);
                 }
             } catch (error) {
                 console.log('error: ', error);
@@ -218,7 +225,7 @@ const LoginModal = () => {
     )
 
     return(
-        <Modal 
+        <Modal
           isOpen={loginModal.isOpen}
           title="Login"
           body={bodyContent}

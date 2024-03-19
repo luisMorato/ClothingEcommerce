@@ -5,8 +5,15 @@ import React, {
     useState, 
     SetStateAction 
 } from 'react';
-import { FaChevronRight, FaChevronLeft, FaShippingFast } from 'react-icons/fa';
-import { BsToggle2Off, BsToggle2On  } from "react-icons/bs";
+import { 
+    FaChevronRight, 
+    FaChevronLeft, 
+    FaShippingFast 
+} from 'react-icons/fa';
+import { 
+    BsToggle2Off, 
+    BsToggle2On  
+} from "react-icons/bs";
 
 import { productsProps } from '@/app/Types/route';
 
@@ -23,7 +30,12 @@ type sideBarProps = {
     urlCategory: string
 }
 
-const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: sideBarProps) => {
+const SideBar = ({ 
+    setFilteredProducts,
+    products, 
+    urlGender, 
+    urlCategory,
+}: sideBarProps) => {
     const router = useRouter();
 
     const [freeShiping, setFreeShiping] = useState<boolean>(false);
@@ -82,13 +94,13 @@ const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: side
         const filterProducts = () => {
             let filteredProducts = products;
 
-            if(products && filteredProducts){
+            if(products && filteredProducts) {
                 if(freeShiping){
-                    filteredProducts = filteredProducts.filter((product) => product?.freeShipping === true);
+                    filteredProducts = filteredProducts.filter((product) => product.freeShipping === true);
                 }
                 
                 if(category && category !== 'All') {
-                    filteredProducts = filteredProducts.filter((product) => product!.category.toString().toLowerCase().replace(/ /g, '').includes(category.toLowerCase().replace(/ /g, '')));
+                    filteredProducts = filteredProducts.filter((product) => product?.category?.some((productcategory) => productcategory.toString().toLowerCase().replace(/ /g, '').includes(category.toLowerCase().replace(/ /g, ''))));
                 }
         
                 if(priceInterval > 10){
@@ -108,7 +120,7 @@ const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: side
                     );
                 }
         
-                if(gender){
+                if(gender) {
                     filteredProducts = filteredProducts.filter((product) => product!.gender === gender);
                 }
 
@@ -183,7 +195,6 @@ const SideBar = ({ setFilteredProducts, products, urlGender, urlCategory }: side
                     />
                     <Sizing
                         selectedSizes={selectedSizes}
-                        sizes={sizes}
                     />
                     <Color
                         setColor={setColor}

@@ -2,10 +2,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import { GrZoomIn } from "react-icons/gr";
-import { ImArrowDown, ImArrowUp } from "react-icons/im";
+import { 
+    ImArrowDown, 
+    ImArrowUp 
+} from "react-icons/im";
+import { 
+    FaChevronLeft, 
+    FaChevronRight 
+} from "react-icons/fa";
 
 import { productsProps } from "@/app/Types/route";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const ProductImages = ({ product }: { product: productsProps }) => {
     const [principalImage, setPrincipalImage] = useState<string>(product?.image[0] as string);
@@ -101,7 +107,7 @@ const ProductImages = ({ product }: { product: productsProps }) => {
                         onMouseMove={(e) => {zoomImage(e)}}
                         onMouseLeave={handleMouseLeave}
                         className="md:hidden"
-                        src={product!.image[imageIndex] as string} alt='principalImage' fill quality={80} priority sizes="350px"
+                        src={product.image[imageIndex] as string} alt='principalImage' fill quality={80} priority sizes="350px"
                     />
                     <div 
                         className="absolute flex justify-between px-3 w-full top-1/2 -translate-y-1/2 z-30 text-lg

@@ -1,4 +1,4 @@
-import DefaultInput from "../../Layout/Inputs/DefaultInput";
+import DefaultInput from "@/app/Components/Layout/Inputs/DefaultInput";
 
 const BillingDetailsForm = () => {
     return(

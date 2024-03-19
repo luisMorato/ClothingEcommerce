@@ -2,8 +2,15 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { useEffect, useRef, useState } from "react";
-import { FaChevronRight , FaChevronLeft } from "react-icons/fa";
+import { 
+    useEffect, 
+    useRef, 
+    useState 
+} from "react";
+import { 
+    FaChevronRight, 
+    FaChevronLeft 
+} from "react-icons/fa";
 
 import data from "@/public/Data/FakeApi.json";
 const { Slides } = data;
@@ -17,12 +24,12 @@ const Slider = () => {
     const nextSlide = () => {
         clearInterval(slideInterval.current as NodeJS.Timeout);
         setVisibleSlide((value) => value === Slides.length ? 1 : value + 1 );
-    }
+    };
 
     const prevSlide = () => {
         clearInterval(slideInterval.current as NodeJS.Timeout);
         setVisibleSlide((value) => value === 1 ? Slides.length : value - 1 );
-    }
+    };
 
     useEffect(() => {
         slideInterval.current = setInterval(() => {
@@ -47,8 +54,8 @@ const Slider = () => {
                             <h2 
                             className={slide.slideText ? "text-white text-center text-3xl absolute w-[40%] z-10 hidden md:left-1/2 md:-translate-x-1/2 md:top-[45%] lg:block" : "hidden"}>{slide.slideText}</h2>
                         </section>
-                        <Image className="hidden lg:block" src={slide.imgSrc[0]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="full" priority />
-                        <Image className="lg:hidden" src={slide.imgSrc[1]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="full" priority />
+                        <Image className="hidden lg:block" src={slide.imgSrc[0]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="100%" priority />
+                        <Image className="lg:hidden" src={slide.imgSrc[1]} alt={`slider-img-${slide.id}`} fill quality={100} sizes="100%" priority />
                         <div className="flex justify-center absolute bottom-10 gap-4 z-10 w-full
                         md:gap-14">
                             <button

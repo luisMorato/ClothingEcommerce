@@ -1,19 +1,22 @@
 'use client';
+import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
 
+import { Capitalize } from "@/app/utils/UsefulFunctions";
 import useUploadImageModal from "@/app/Hooks/UseUploadImageModal";
 
 import Button from "@/app/Components/Layout/Button";
-import UploadImageModal from "./UploadImageModal";
-import Image from "next/image";
-import { Capitalize } from "@/app/utils/UsefulFunctions";
+import UploadImageModal from "@/app/Components/(protected)/Profile/UploadImageModal";
 
 type UserCardsProps = {
     currentUserName: string | null,
     currentUserImage: string | null
 }
 
-const UserCards = ({ currentUserName, currentUserImage }: UserCardsProps) => {
+const UserCards = ({ 
+    currentUserName, 
+    currentUserImage 
+}: UserCardsProps) => {
     const UploadImageModalconfig = useUploadImageModal();
     
     return currentUserName && (

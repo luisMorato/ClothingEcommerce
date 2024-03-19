@@ -1,40 +1,41 @@
 'use client';
-import { Suspense, useContext, useEffect, useState } from "react";
-import { SearchContext } from "@/app/Context/ContextSearch";
+import { 
+    Suspense,
+    useContext, 
+    useEffect, 
+    useState 
+} from "react";
 
-import { FetchProducts, FetchWishList } from "@/app/utils/FetchingFunctions";
+import { SearchContext } from "@/app/Context/ContextSearch";
+import { UseFetch } from "@/app/Hooks/UseFetch";
 import { productsProps } from "@/app/Types/route";
 
 import ProductsCard from "@/app/Components/Products/ProductsCard";
 import Loading from "@/app/loading";
-import { getCurrentUser } from "../utils/GetUser";
 
 const Search = () => {
-    const { search } = useContext(SearchContext);
+    const domain = process.env.NEXT_PUBLIC_APP_URL;
 
+    const { fetching } = UseFetch();
+
+    const { search } = useContext(SearchContext);
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
-    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
     
     useEffect(() => {
-        const fetchData = async () => {
-            const currentUser = await getCurrentUser();
-            
+        const fetchData = async () => {    
             try {
-                const [productsResponse, WishListResponse] = await Promise.all([
-                    FetchProducts(),
-                    FetchWishList(currentUser?.id as string)
+                const [productsResponse] = await Promise.all([
+                    fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
                 ]);
 
                 setProducts(productsResponse);
-
-                setWishListProcutsIds(WishListResponse);
             } catch (error) {
                 console.log('error: ', error);
             }
         }
 
         fetchData();
-    }, []);
+    }, [domain, fetching]);
 
     return search ? (
         <div className="bg-grayVariant flex flex-col items-center justify-center gap-4 h-1/2 w-full pt-8">
@@ -45,7 +46,7 @@ const Search = () => {
                         <Loading />
                     }
                 >
-                    {products && wishListProductsIds &&
+                    {products &&
                         products.filter((product) => product && product.title.toLowerCase().includes(search.toLowerCase())).length !== 0 
                         ?
                         products
@@ -55,7 +56,6 @@ const Search = () => {
                             <ProductsCard
                                 key={product.id}
                                 product={product}
-                                wishListProductsIds={wishListProductsIds}
                             />
                         )) 
                         : 

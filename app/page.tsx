@@ -1,6 +1,4 @@
 'use client';
-import { useEffect, useState } from "react";
-
 import Brands from "@/app/Components/Home/Brands";
 import InfoIsland from "@/app/Components/Home/InfoIsland";
 import NewProdcuts from "@/app/Components/Home/NewProducts";

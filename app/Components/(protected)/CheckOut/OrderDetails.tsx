@@ -17,7 +17,11 @@ type OrderDetailsProps = {
     subtotal: number[]
 }
 
-const OrderDetails = ({ filteredData, cartProducts, subtotal }: OrderDetailsProps) => {
+const OrderDetails = ({ 
+    filteredData, 
+    cartProducts, 
+    subtotal 
+}: OrderDetailsProps) => {
     const taxes = 0;
     
     return (
@@ -46,7 +50,7 @@ const OrderDetails = ({ filteredData, cartProducts, subtotal }: OrderDetailsProp
             </div>
             <div className="flex justify-between mt-4 py-3 w-[90%] mx-auto border-t text-neutral-400">
                 <p>Subtotal</p>
-                <p>${subtotal?.reduce((price, currentPrice) => price + currentPrice).toFixed(2)}</p>
+                <p>${subtotal.reduce((price, currentPrice) => price + currentPrice).toFixed(2)}</p>
             </div>
             <div className="flex justify-between py-3 w-[90%] mx-auto border-t text-neutral-400">
                 <p>Taxes</p>

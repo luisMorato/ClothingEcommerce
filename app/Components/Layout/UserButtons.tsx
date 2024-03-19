@@ -1,15 +1,17 @@
 'use client';
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { FaBars, FaUserCircle  } from "react-icons/fa";
+import { signOut } from "next-auth/react";
+import { useState } from "react";
+import { 
+    FaBars, 
+    FaUserCircle
+} from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 
-import { signOut } from "next-auth/react";
+import { User } from "@prisma/client";
 import useLoginModal from "@/app/Hooks/UseLoginModal";
 import useRegisterModal from "@/app/Hooks/UseRegisterModal";
-
-import { User } from "@prisma/client";
 
 import Button from "@/app/Components/Layout/Button";
 import Cart from "@/app/Components/Layout/Cart/Cart";
@@ -34,8 +36,8 @@ const UserButtons = ({ currentUser }: {currentUser: User | null}) => {
                                 <FaCartShopping className="text-neutral-400"/>
                             </button>
                             <button
-                            onClick={() => {setOpenUserMenu((value) => !value)}}
-                            className="flex items-center justify-center gap-2 border rounded-[24px] py-1 px-[10px] hover:shadow-md"
+                                onClick={() => {setOpenUserMenu((value) => !value)}}
+                                className="flex items-center justify-center gap-2 border rounded-[24px] py-1 px-[10px] hover:shadow-md"
                             >
                                 <div className=" flex items-center border-r pr-2 border-r-neutral-400"
                                 >
@@ -60,7 +62,7 @@ const UserButtons = ({ currentUser }: {currentUser: User | null}) => {
                         {openUserMenu &&
                             <div className="absolute top-full right-0 mt-2 bg-white text-sm font-semibold rounded-md border">
                                 <ul>
-                                    <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href={`/WishList?id=${currentUser.id as string}`}>My Favorites</Link></li>
+                                    <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href={"/WishList"}>My Favorites</Link></li>
                                     <li className="py-2 px-4 text-nowrap hover:bg-neutral-200"><Link href='/Profile'>Account</Link></li>
                                 </ul>
                                 <hr />

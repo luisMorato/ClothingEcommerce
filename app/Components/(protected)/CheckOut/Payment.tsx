@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import {  FaBarcode, FaApplePay } from 'react-icons/fa';
+import {  
+    FaBarcode, 
+    FaApplePay
+} from 'react-icons/fa';
 import { BsXDiamondFill } from "react-icons/bs";
 
 import Button from '@/app/Components/Layout/Button';
 import CreditCard from '@/app/Components/(protected)/CheckOut/CreditCard';
 
 const Payment = () => {
-
     return (
         <div className="py-3 mt-5 border-t border-black mx-auto w-[90%]">
             <h2 className="text-2xl">Payment</h2>

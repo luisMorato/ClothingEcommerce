@@ -1,5 +1,8 @@
 'use client';
-import { createContext, useState } from "react";
+import { 
+    createContext, 
+    useState 
+} from "react";
 
 type searchContextProps = {
     search: string,

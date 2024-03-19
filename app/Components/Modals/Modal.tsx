@@ -1,5 +1,9 @@
 'use client';
-import { useCallback, useEffect, useState } from "react";
+import React, { 
+    useCallback, 
+    useEffect, 
+    useState
+} from "react";
 import { IoMdClose } from 'react-icons/io';
 import Button from "@/app/Components/Layout/Button";
 
@@ -28,7 +32,7 @@ const Modal = ({
 
     useEffect(() => {
         setShowModal(isOpen);
-    }, [isOpen])
+    }, [isOpen]);
 
     const handleClose = useCallback(() => {
         if(disabled) return;
@@ -38,14 +42,14 @@ const Modal = ({
         setTimeout(() => {
             onClose!();
         }, 300);
-    }, [disabled, onClose])
+    }, [disabled, onClose]);
 
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if(disabled) return;
 
         onSubmit();
-    }, [disabled, onSubmit])
-    
+    }, [disabled, onSubmit]);
     
     return (
         <div className={isOpen ? "opacity-100 duration-300 fixed z-50 overflow-y-hidden inset-0 bg-neutral-800/70" : "opacity-0 hidden"}>
@@ -67,20 +71,22 @@ const Modal = ({
                         </div>
                     </div>
                     {/* BODY */}
-                        <div className=" px-3 mb-10">
-                            {body}
-                        </div>
-                        <div className="mb-3 px-3">
-                            <Button
-                                id={(`${actionlabel}Btn`).replace(' ', '')}
-                                type="submit"
-                                roundedMd
-                                disabled={disabled}
-                                onClick={handleSubmit}
-                            >
-                                {actionlabel}
-                            </Button>
-                        </div>
+                        <form onSubmit={(e) => handleSubmit(e)}>
+                            <div className=" px-3 mb-10">
+                                {body}
+                            </div>
+                            <div className="mb-3 px-3">
+                                <Button
+                                    id={(`${actionlabel}Btn`).replace(' ', '')}
+                                    type="submit"
+                                    roundedMd
+                                    disabled={disabled}
+                                    // onClick={handleSubmit}
+                                >
+                                    {actionlabel}
+                                </Button>
+                            </div>
+                        </form>
                     <div className="mb-3 px-3">
                         {footer}
                     </div>

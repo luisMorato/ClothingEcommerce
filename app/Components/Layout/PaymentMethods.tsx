@@ -1,4 +1,9 @@
-import { FaCcMastercard, FaCcVisa, FaBarcode, FaApplePay } from 'react-icons/fa';
+import { 
+    FaCcMastercard, 
+    FaCcVisa, 
+    FaBarcode, 
+    FaApplePay 
+} from 'react-icons/fa';
 import { BsXDiamondFill } from "react-icons/bs";
 
 const PaymentMethods = () => {

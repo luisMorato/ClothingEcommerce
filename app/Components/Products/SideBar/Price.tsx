@@ -1,5 +1,5 @@
 'use client';
-import React, { SetStateAction } from "react"
+import { SetStateAction } from "react"
 import { FaX } from "react-icons/fa6"
 
 type priceProps = {
@@ -8,7 +8,11 @@ type priceProps = {
     setPriceInterval: React.Dispatch<SetStateAction<number>>
 }
 
-const Price = ({ clearFilters, priceInterval, setPriceInterval }: priceProps) => {
+const Price = ({ 
+    clearFilters, 
+    priceInterval, 
+    setPriceInterval 
+}: priceProps) => {
     return (
         <div className="mb-8">
             <div className="flex justify-between items-center mb-3">

@@ -3,12 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useState } from "react";
-import toast from "react-hot-toast";
-import { FaMinus, FaPlus } from "react-icons/fa";
+import { 
+    FaMinus, 
+    FaPlus 
+} from "react-icons/fa";
 import { FaX } from "react-icons/fa6";
 
-import { productToAddProps, productsProps } from "@/app/Types/route";
 import { AddProduct } from "@/app/utils/AddToCart";
+import { 
+    productToAddProps, 
+    productsProps 
+} from "@/app/Types/route";
 
 type CartCardProps = {
     product: productsProps,
@@ -18,58 +23,23 @@ type CartCardProps = {
         quantity: number,
         size: string
     }[],
+    subtractPOST: (productToAddOrSubtract: productToAddProps) => void,
+    RemoveProduct: (productId: number) => void
 }
 
-const CartCard = ({ product, cartProducts }: CartCardProps) => {
-    const domain = process.env.NEXT_PUBLIC_APP_URL;
-
+const CartCard = ({ 
+    product, 
+    cartProducts, 
+    subtractPOST, 
+    RemoveProduct 
+}: CartCardProps) => {
     const size = cartProducts.find(({ productId }) => productId === product!.id)?.size;
 
-    const [productToAddOrSubtract, setProductToAddOrSubtract] = useState<productToAddProps>({
+    const [productToAddOrSubtract] = useState<productToAddProps>({
         productId: product?.id as number,
         quantity: 1,
         size: size as string,
     });
-
-    const subtractPOST = async () => {
-        const url = `${domain}/api/SubtractCartProduct`;
-        try {
-            const response = await fetch(url,
-                {
-                    method: "PUT",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(productToAddOrSubtract)
-                }
-            );
-            const resJson = await response.json();
-            if(resJson.success) toast.success(resJson.success);
-            else toast.error(resJson.error);
-        } catch (error) {
-            console.log('error: ', error);
-            toast.error('Error processing the request. Please, try again');
-        }
-    }
-
-    const RemoveProduct = async (productId: number) => {
-        const url = `${domain}/api/RemoveCartProduct`;
-        try {
-            const response = await fetch(url,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(productId),
-                }
-            );
-            const resJson = await response.json();
-        } catch (error) {
-            console.log('error: ', error);
-            toast.error('Error processing the request. Please, try again');
-        }
-    }
 
     return product && (
         <div className="mr-3 border-b">
@@ -100,7 +70,7 @@ const CartCard = ({ product, cartProducts }: CartCardProps) => {
                         </div>
                         <div className="flex items-center justify-between gap-3 px-1 border border-neutral-300">
                             <FaMinus
-                                onClick={subtractPOST}
+                                onClick={() => subtractPOST(productToAddOrSubtract)}
                                 className="text-xs font-light cursor-pointer hover:text-neutral-400"
                             />
                             <p>{cartProducts.find(({ productId }) => productId === product.id)?.quantity}</p>

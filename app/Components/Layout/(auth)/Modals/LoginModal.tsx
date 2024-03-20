@@ -2,6 +2,7 @@
 import { signIn } from 'next-auth/react';
 import { AuthError } from 'next-auth';
 import { 
+    usePathname,
     useRouter,
     useSearchParams
 } from 'next/navigation';
@@ -98,9 +99,9 @@ const LoginModal = () => {
                 if(resJson.error) toast.error(resJson.error);
                 else {
                     toast.success(resJson.success);
-                    router.refresh();
                     setTimeout(() => {
                         loginModal.onClose();
+                        router.refresh();
                     }, 1500);
                 }
             } catch (error) {

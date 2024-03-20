@@ -135,12 +135,12 @@ const SideBar = ({
 
     return (
         <aside
-            className={`flex flex-col h-screen px-4 z-20 fixed left-0 bg-white w-[300px] translate duration-200
+            className={`flex flex-col h-screen px-4 z-50 fixed left-0 bg-white w-[300px] translate duration-200
             ${isOpen ? "translate-x-0" : "-translate-x-[95%]"}
             md:w-[320px]
             lg:h-full
             lg:translate-x-0
-            lg:z-0
+            lg:z-20
             lg:relative
             2xl:w-[350px]`}
         >

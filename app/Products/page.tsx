@@ -29,7 +29,6 @@ const Products = () => {
     const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
 
     const [orderBy, setOrderBy] = useState<string>('');
-    
 
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
     const [filteredProducts, setFilteredProducts] = useState<productsProps[] | undefined>([]);

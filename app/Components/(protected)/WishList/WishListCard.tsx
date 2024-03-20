@@ -65,7 +65,7 @@ const WishListCard = ({
                         >Added on: 9, January 2024</p>
                         <div 
                             className="flex justify-between gap-3
-                            items-center"
+                            items-center text-nowrap"
                         >
                             <Button
                                 id="addToCartBtn"

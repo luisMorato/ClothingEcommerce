@@ -22,7 +22,7 @@ const WishList = () => {
     const { fetching } = UseFetch();
 
     const [products, setProducts] = useState<productsProps[] | undefined>([]);
-    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number> | undefined>([]);
+    const [wishListProductsIds, setWishListProcutsIds] = useState<Array<number>>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,7 +42,7 @@ const WishList = () => {
         }
 
         fetchData();
-    }, [wishListProductsIds, domain, fetching]);
+    }, [domain, fetching]);
 
     const wishListProducts: productsProps[] | undefined = wishListProductsIds && products && products.filter((product) => wishListProductsIds.some((id) => product!.id === id));
 

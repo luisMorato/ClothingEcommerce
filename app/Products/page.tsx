@@ -77,6 +77,7 @@ const Products = () => {
                     }
                 }
 
+                console.log('here')
                 setFilteredProducts(productsResponse);
                 setWishListProcutsIds(WishListResponse);
             } catch (error) {
@@ -130,8 +131,8 @@ const Products = () => {
             return sorted;
         }
 
-        const SortedPorducts = sortProducts();
-        setFilteredProducts(SortedPorducts);
+        const SortedProducts = sortProducts();
+        setFilteredProducts(SortedProducts);
     }, [orderBy]);
 
     //WishList Functions

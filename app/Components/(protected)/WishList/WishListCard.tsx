@@ -39,10 +39,11 @@ const WishListCard = ({
                     </Link>
                 </td>
                 <td 
-                    className="text-neutral-400 text-sm text-center text-wrap w-1/5 max-w-1/5
-                    md:text-lg"
+                    className={`text-neutral-400 text-sm text-center text-wrap w-1/5 max-w-1/5
+                    md:text-lg
+                    ${product.title.length > 30 && "text-nowrap"}`}
                 >
-                    <p>{product.title}</p>
+                    <p className={product.title.length > 30 ? "overflow-hidden text-ellipsis" : ""}>{product.title}</p>
                 </td>
                 <td className="w-1/5 max-w-1/5">
                     <p 
@@ -63,10 +64,7 @@ const WishListCard = ({
                             className="text-xs text-neutral-400 text-nowrap mb-2
                             md:text-sm"
                         >Added on: 9, January 2024</p>
-                        <div 
-                            className="flex justify-between gap-3
-                            items-center text-nowrap"
-                        >
+                        <div className="flex justify-between gap-3 items-center text-nowrap" >
                             <Button
                                 id="addToCartBtn"
                                 icon={FaShoppingCart}

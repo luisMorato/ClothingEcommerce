@@ -102,7 +102,7 @@ const WishList = () => {
                             "
                         >
                             <Suspense
-                                fallback={<Loading />}
+                                fallback={<p>Loading...</p>}
                             >
                                 {wishListProducts.map((product) => (
                                     product &&

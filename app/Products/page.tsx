@@ -77,7 +77,6 @@ const Products = () => {
                     }
                 }
 
-                console.log('here')
                 setFilteredProducts(productsResponse);
                 setWishListProcutsIds(WishListResponse);
             } catch (error) {

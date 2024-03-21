@@ -39,7 +39,8 @@ const WishListCard = ({
                     </Link>
                 </td>
                 <td 
-                    className={`text-neutral-400 text-sm text-center text-wrap w-1/5 max-w-1/5
+                    className={`text-neutral-400 text-sm text-center w-1/5 max-w-1/5
+                    md:text-wrap
                     md:text-lg
                     ${product.title.length > 30 && "text-nowrap"}`}
                 >
@@ -59,22 +60,24 @@ const WishListCard = ({
                     ><span className="bg-green-500 h-2 w-2 rounded-full"></span>In Stock</p>
                 </td>
                 <td className="w-1/5 max-w-1/5">
-                    <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center w-full">
                         <p 
                             className="text-xs text-neutral-400 text-nowrap mb-2
                             md:text-sm"
                         >Added on: 9, January 2024</p>
                         <div className="flex justify-between gap-3 items-center text-nowrap" >
-                            <Button
-                                id="addToCartBtn"
-                                icon={FaShoppingCart}
-                                onClick={() => AddProduct(productToAdd)}
-                            >
-                                <p 
-                                    className="text-nowrap text-sm
-                                    md:text-base"
-                                >Add to Cart</p>
-                            </Button>
+                            <div className="max-w-[135px] max-h-[32px] min-w-[135px] min-h-[32px]">
+                                <Button
+                                    id="addToCartBtn"
+                                    icon={FaShoppingCart}
+                                    onClick={() => AddProduct(productToAdd)}
+                                >
+                                    <p
+                                        className="text-nowrap text-sm
+                                        md:text-base"
+                                    >Add to Cart</p>
+                                </Button>
+                            </div>
                             <FaRegTrashAlt 
                                 className="text-lg text-neutral-400 cursor-pointer hover:text-red-600
                                 md:text-2xl"

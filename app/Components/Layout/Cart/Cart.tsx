@@ -35,8 +35,8 @@ const Cart = ({ currentUserId }: {currentUserId: string}) => {
                     fetching(`${domain}/api/CartApi?id=${currentUserId}`, "GET", "application/json"),
                     fetching(`${domain}/api/FetchProducts`, "GET", "application/json"),
                 ]);
-    
-                setCartProducts(cartResponse);
+
+                setCartProducts((prevProducts) => [prevProducts, ...cartResponse]);
                 setProducts(productsResponse);
             } catch (error) {
                 console.log('error: ', error);
